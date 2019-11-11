@@ -1,4 +1,4 @@
-
+package Projeto.Cliente;
 public interface RepositorioCliente {
     public void inserir(Cliente cliente);
     public Cliente buscar(String nome, String cpf);

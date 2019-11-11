@@ -1,3 +1,6 @@
+package Projeto.Cliente;
+import Projeto.Venda.RepositorioVendas;
+import Projeto.Pessoa.Pessoa;
 
 public class Cliente extends Pessoa {
 	private String codigo;

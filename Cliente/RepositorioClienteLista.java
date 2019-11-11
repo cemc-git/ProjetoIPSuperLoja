@@ -1,4 +1,4 @@
-
+package Projeto.Cliente;
 public class RepositorioClienteLista implements RepositorioCliente   {
 	private String nome;
 	private String cpf;
@@ -20,14 +20,14 @@ public class RepositorioClienteLista implements RepositorioCliente   {
 	         this.prox = new RepositorioClienteLista();
 			}
 			else if(this.cliente.equals(cliente)) {
-				//excecao
+				//cliente ja cadastrado
 			}
 			else {
 				this.prox.inserir(cliente);}
 		
 	}
 
-	@Override
+	
 	public Cliente buscar(String nome, String cpf) {
 		if(this.nome.equals(nome)) {
 		    return cliente;
@@ -42,7 +42,7 @@ public class RepositorioClienteLista implements RepositorioCliente   {
 		return null;
 	}
 
-	@Override
+	
 	public boolean existe(String nome, String cpf) {
 		if(cliente.equals(this.cliente)) {
 			return true;
@@ -57,19 +57,17 @@ public class RepositorioClienteLista implements RepositorioCliente   {
 		
 	}
 
-	@Override
+	
 	public void atualizar(Cliente cliente, Cliente clienteNovo) {
 		if(cliente.equals(clienteNovo)) {
 			this.cliente = clienteNovo;
 		}
 		else if(cliente.equals(null)) {
-			//O pau no cu escreveu um negocio que nem existe, vai dar erro ou n atualizar no caso
+			//vai dar erro ou n atualizar no caso
 		}
 		else {
 			this.prox.atualizar(cliente, clienteNovo);
 		}
-		
-		
 	}
 	
 

@@ -1,5 +1,7 @@
-
+package Projeto.Cliente;
+import java.util.Scanner;
 public class RepositorioClienteArray implements RepositorioCliente {
+	
 	Cliente repositorioA[] = new Cliente[30];
 	private String nome;
 	private String cpf;
@@ -9,7 +11,14 @@ public class RepositorioClienteArray implements RepositorioCliente {
 	
 	public void inserir(Cliente cliente) {
 		for (int i = 0; i < repositorioA.length; i++) {
-		   repositorioA[i] = this.cliente;
+			if(repositorioA[i]==null) {
+		   repositorioA[i] = this.cliente;}
+			else if(repositorioA[i]==this.cliente) {
+				//Cliente ja existe
+			}
+			else {
+				
+			}
 		}
 		
 	}
@@ -36,18 +45,24 @@ public class RepositorioClienteArray implements RepositorioCliente {
 
 	
 	public boolean existe(String nome, String cpf) {
+		boolean aux=false;
               for (int i = 0; i < repositorioA.length; i++) {
 				if(cliente.equals(repositorioA[i])) {
-					return true;
+					aux=true;
+					
+				}
+				else {
+					
 				}
 			}
               
-		return false;
+		return aux;
 	}
 	public void atualizar(Cliente cliente, Cliente clienteNovo) {
 		for (int i = 0; i < repositorioA.length; i++) {
 			if(cliente.equals(repositorioA[i])) {
-				cliente=clienteNovo;
+				repositorioA[i] = clienteNovo;
+				
 			}
 		}
 		
