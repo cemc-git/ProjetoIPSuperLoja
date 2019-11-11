@@ -1,4 +1,5 @@
-package projetoLojaHeroi;
+package ServicoDeEntrega;
+import Venda.Venda;
 
 public class ServicoDeEntrega {
 	private double distancia;
@@ -23,7 +24,7 @@ public class ServicoDeEntrega {
 		return tipoDeEntrega;
 	}
 	
-	public double calcularPrecoFrete(ServicoDeEntrega frete) {//EXCEPTION DISTANCIA INVALIDA
+	public double calcularPrecoFrete(ServicoDeEntrega frete) throws DIException {//EXCEPTION DISTANCIA INVALIDA
 		double calculo=0;
 		if (this.distancia>0&&this.distancia<100) {
 			calculo=Math.sqrt(Math.pow(this.distancia, 2));
@@ -32,6 +33,10 @@ public class ServicoDeEntrega {
 			calculo=Math.sqrt(Math.pow(this.distancia, 2))*10;
 		}else if (this.distancia>1000) {
 			calculo=Math.sqrt(Math.pow(this.distancia, 2))*100;
+		}else if (this.distancia<0) {
+			DIException erro;
+			erro=new DIException(this.distancia,frete);
+			throw erro;
 		}
 		switch (this.tipoDeEntrega) {
 		case "rapidex":

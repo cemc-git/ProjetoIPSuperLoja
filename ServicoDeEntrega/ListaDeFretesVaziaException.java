@@ -1,7 +1,7 @@
-package projetoLojaHeroi;
+package ServicoDeEntrega;
 
 public class ListaDeFretesVaziaException extends Exception {
-	public ListaDeFretesVaziaException(RepositorioServicoEntrega listaFretes) {
+	public ListaDeFretesVaziaException() {
 		super ("Não existem fretes em andamento!");	
 	}
 }
