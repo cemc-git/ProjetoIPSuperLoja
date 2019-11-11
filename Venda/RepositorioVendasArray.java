@@ -1,13 +1,13 @@
-package projeto;
+package Venda;
 
-public class RepositorioVendasArray implements RepositorioVendas {
+public class RepositorioVendasArray implements RepositorioVendas  {
 private Venda[] repositorio;
 private int cont;
-
+private int tam;
 public RepositorioVendasArray(int tam) {
-	
-	this.repositorio=new Venda[tam];
-	this.cont=tam-1;
+	this.tam=tam;
+	this.repositorio=new Venda[this.tam];
+	this.cont =0;
 	
 	for (int i = 0; i < repositorio.length; i++) {
 		repositorio[i]=null;
@@ -17,9 +17,16 @@ public RepositorioVendasArray(int tam) {
 
 
 
-public void inserir(Venda venda) {
+public void inserir(Venda venda)  {
 	if (cont>=repositorio.length) {
-		//erro de limite do array
+		
+		
+				Venda[] aux =new Venda[repositorio.length+1];
+				for (int i = 0; i < repositorio.length ; i++) {
+					aux[i]=repositorio[i];
+				}
+		this.repositorio=aux;
+		inserir(venda);
 	}else {
 		repositorio[cont]=venda;
 		cont++;
@@ -48,7 +55,7 @@ public boolean existe(Venda venda) {
 }
 
 
-public Venda buscar(int id) {
+public Venda buscar(int id) throws BuscaIdException {
 Venda aux=null;
 for (int i = 0; i < repositorio.length; i++) {
 
@@ -57,7 +64,10 @@ for (int i = 0; i < repositorio.length; i++) {
 	}
 	
 }
-	
+if (aux==null) {
+	BuscaIdException e= new BuscaIdException(id);
+	throw e;
+}	
 	
 	
 	
@@ -77,7 +87,7 @@ public void setCont(int cont) {
 
 
 @Override
-public void atualizar(Venda vendaAntiga, Venda vendaAtualizada) {
+public void atualizar(Venda vendaAntiga, Venda vendaAtualizada) throws VendaNaoEncontradaException {
 	boolean executado=false;
 	for (int i = 0; i < repositorio.length && repositorio[i]!=null&&!executado; i++) {
 		if (repositorio[i].equals(vendaAntiga)) {
@@ -86,7 +96,8 @@ public void atualizar(Venda vendaAntiga, Venda vendaAtualizada) {
 		}
 	}
 	if (!executado) {
-		//nao encontrou
+		VendaNaoEncontradaException e =new VendaNaoEncontradaException(vendaAntiga);
+		throw e;
 	}
 	
 }
