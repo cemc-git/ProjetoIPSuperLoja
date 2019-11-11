@@ -1,4 +1,4 @@
-package projetoLojaHeroi;
+package ServicoDeEntrega;
 
 public class FreteVazioException extends Exception {
 	public FreteVazioException(ServicoDeEntrega frete) {
