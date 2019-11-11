@@ -4,7 +4,15 @@ public class Produto {
 	private double valor;
 	private int quantidade;
 	private double valor_de_Compra;
-	private double valor_de_venda;
+	private double valor_de_Venda;
+	
+	public Produto(String nome, double valor, int quantidade, double valordecompra, double valordevenda) {
+		this.nome_produto = nome;
+		this.valor = valor;
+		this.quantidade = quantidade;
+		this.valor_de_compra = valordecompra;
+		this.valor_de_Venda = valordevenda;
+	}
 	
 	
 	public String getNome_Produto() {
