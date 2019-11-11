@@ -1,4 +1,3 @@
-
 public class RepositorioProdutosLista implements RepositorioProduto {
 
 	private Produto produto;
@@ -26,28 +25,28 @@ public class RepositorioProdutosLista implements RepositorioProduto {
 		}
 	}
 	@Override
-	public String remover(Produto produto, String nome_Produto) {
+	public String remover(Produto produto, String nomeproduto) {
 		if (this.produto == null) {
-			return "Esse produto n„o existe";
+			return "Esse produto n√£o existe";
 		}
 
-		else if (this.produto.getNome_Produto() == nome_Produto) {
+		else if (this.produto.getnomeproduto() == nomeproduto) {
 			this.produto = this.proximo.produto;
 			this.proximo = this.proximo.proximo;
-			return "%s, " + nome_Produto + "removido com sucesso";
+			return "%s, " + nomeproduto + "removido com sucesso";
 		} else {
-			return this.proximo.remover(produto, nome_Produto);
+			return this.proximo.remover(produto, nomeproduto);
 		}
 
 	}
 	@Override
-	public boolean procurar(Produto produto, String nome_Produto) {
+	public boolean procurar(Produto produto, String nomeproduto) {
 		if (this.produto == null) {
 			return false;
-		} else if (this.produto.getNome_Produto() == nome_Produto) {
+		} else if (this.produto.getnomeproduto() == nomeproduto) {
 			return true;
 		} else {
-			return this.proximo.procurar(produto, nome_Produto);
+			return this.proximo.procurar(produto, nomeproduto);
 		}
 	}
 
