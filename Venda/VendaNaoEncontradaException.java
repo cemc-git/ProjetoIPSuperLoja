@@ -6,7 +6,7 @@ private Venda venda;
 
 public VendaNaoEncontradaException(Venda venda) {
 	
-	super ("A venda a ser atualizada não foi encontrada");
+	super ("Nao foi possível realizar operação, pois a venda não foi encontrada.");
 	this.venda=venda;
 }
 

@@ -1,4 +1,4 @@
-package projeto;
+package Venda;
 
 public class RepositorioVendasLista implements RepositorioVendas {
 private Venda venda;
@@ -10,25 +10,25 @@ private RepositorioVendasLista prox;
 	}
 	
 	
-	public void inserir(Venda venda) {
+	public void inserir(Venda venda) throws InserirExistenteException {
 		
 		
-			if (existe(buscar(venda.getId()))) {
+			if (existe(venda)) {
+				
+				InserirExistenteException e = new InserirExistenteException(venda);
 				
 				
 				
+				
+				
+				
+			}else {
 				if (this.venda.equals(null)) {
 					this.venda=venda;
 					this.prox=new RepositorioVendasLista();
 				}else {
 					this.prox.inserir(venda);
 				}
-				
-				
-				
-				
-			}else {
-				//vai dar excecao
 			}
 		
 		
@@ -41,7 +41,7 @@ private RepositorioVendasLista prox;
 		if (!venda.equals(null)) {
 			if (!this.venda.equals(null)) {
 			if (this.prox.equals(null)) {
-				//erro q nao existe
+				//aux continua falso
 			}
 				else if (this.venda.equals(venda)) {
 					aux=true;
@@ -51,10 +51,10 @@ private RepositorioVendasLista prox;
 				}
 			}
 			
-		}else {
+		}/*else {
 			//vai dar excecao porem o da venda ser null vai estar na camada de negocios
 
-		}
+		}*/
 		
 		
 		return aux;
@@ -63,11 +63,13 @@ private RepositorioVendasLista prox;
 	}
 
 	
-	public Venda buscar(int id) {
+	public Venda buscar(int id) throws BuscaIdException{
 
 		Venda aux=null;
 		if (prox.equals(null)) {
-			//erro de nao encontrar nenhum Venda com o id
+			
+			BuscaIdException e=new BuscaIdException(id);
+			throw e;
 		}
 		else if (venda.getId()==id) {
 			aux= venda ;
@@ -82,12 +84,13 @@ private RepositorioVendasLista prox;
 
 
 	
-	public void atualizar(Venda vendaAntiga, Venda vendaAtualizada) {
+	public void atualizar(Venda vendaAntiga, Venda vendaAtualizada)throws VendaNaoEncontradaException {
 		
 		
 			if (!venda.equals(null)) {
 			if (this.prox.equals(null)) {
-				//erro q nao existe
+				VendaNaoEncontradaException e= new VendaNaoEncontradaException(vendaAntiga);
+				throw e;
 			}
 				else if (this.venda.equals(vendaAntiga)) {
 					
@@ -103,6 +106,22 @@ private RepositorioVendasLista prox;
 
 		}
 		
+		
+	}
+
+
+	@Override
+	public void remover(Venda venda) throws VendaNaoEncontradaException {
+	if (this.prox.equals(null)) {
+		VendaNaoEncontradaException e = new VendaNaoEncontradaException(venda);
+		throw e;
+	}
+		else if (this.venda.equals(venda)) {
+			this.venda=this.prox.venda;
+			this.prox=this.prox.prox;
+		}else {
+			prox.remover(venda);
+		}
 		
 	}
 
