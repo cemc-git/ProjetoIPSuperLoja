@@ -1,4 +1,4 @@
-package ServicoDeEntrega;
+package projeto;
 
 public class RepositorioServicosEntregasArray implements RepositorioServicoEntrega {
 	private ServicoDeEntrega fretes[];
@@ -25,33 +25,52 @@ public class RepositorioServicosEntregasArray implements RepositorioServicoEntre
 		}
 		
 	}
-
-	@Override
-	public boolean procurarFrete(ServicoDeEntrega frete)throws FreteInexistenteException {// EXCEPTION NAO EXISTE "FRETE" PROCURADO
+	public boolean existeFrete(ServicoDeEntrega frete) {// EXCEPTION NAO EXISTE "FRETE" PROCURADO
 		// TODO Auto-generated method stub
 		boolean existeFrete=false;
 		for (int i = 0; i < fretes.length; i++) {
 			if (fretes[i]==frete) {
 				existeFrete=true;
 			}
-		}
-		if (existeFrete==false) {
-			throw new FreteInexistenteException(frete);
-		}
+		}	
 		return existeFrete;
 	}
-
 	@Override
-	public String listarFrete()throws ListaDeFretesVaziaException {// EXCEPTION NAO EXISTEM FRETES 
+	public void removerFrete(ServicoDeEntrega frete) throws FreteInexistenteException {
 		// TODO Auto-generated method stub
-		String listaFretes="";
 		for (int i = 0; i < fretes.length; i++) {
-			listaFretes="---------------\n"+"->"+fretes[i].getVenda().getCliente()+"\n"+"->"+fretes[i].getVenda().getFuncionario()+"\n"+"->"+fretes[i].getTipoDeEntrega()+"\n"+"->"+fretes[i].getDistancia()+"\n";
+			if (fretes[i]==frete) {
+				fretes[i]=null;
+			}
 		}
-		if (listaFretes=="") {
-			throw new ListaDeFretesVaziaException();
-		}
-		return listaFretes;
 	}
-
+	@Override
+	public ServicoDeEntrega procurarFrete(ServicoDeEntrega frete) throws FreteInexistenteException {
+		// TODO Auto-generated method stub
+		ServicoDeEntrega freteRetornado=null;
+		for (int i = 0; i < fretes.length; i++) {
+			if (fretes[i]==frete) {
+				freteRetornado=fretes[i];
+		}
+	}
+		if (freteRetornado==null) {
+			throw new FreteInexistenteException(frete);
+		}else {
+			return freteRetornado;
+		}
+	}
+	@Override
+	public void atualizarFrete(ServicoDeEntrega frete, ServicoDeEntrega newFrete) throws FreteInexistenteException {
+		// TODO Auto-generated method stub
+		boolean atualizou=false;
+		for (int i = 0; i < fretes.length; i++) {
+			if (fretes[i]==frete) {
+				fretes[i]=newFrete;
+				atualizou=true;
+			}
+		}if (atualizou) {
+			throw new FreteInexistenteException(frete);
+		}
+	}
+	
 }

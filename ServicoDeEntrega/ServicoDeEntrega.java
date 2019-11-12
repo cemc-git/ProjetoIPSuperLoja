@@ -1,11 +1,9 @@
-package ServicoDeEntrega;
-import Venda.Venda;
+package projeto;
 
 public class ServicoDeEntrega {
 	private double distancia;
 	private String tipoDeEntrega;
 	private Venda venda;
-	//private RepositorioEntregas ServiçoDeEntrega;
 	
 	public ServicoDeEntrega(double distanciaX,Venda venda,String tipoDeEntrega) {
 		this.distancia=distanciaX;

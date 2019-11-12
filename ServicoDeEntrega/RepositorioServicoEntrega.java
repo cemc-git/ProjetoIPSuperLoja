@@ -1,7 +1,9 @@
-package ServicoDeEntrega;
+package projeto;
 
 public interface RepositorioServicoEntrega {
 void inserirFrete(ServicoDeEntrega frete) throws FreteVazioException,FreteJaExistenteException;//THROWS FRETE VAZIO & FRETE JA EXISTE
-boolean procurarFrete(ServicoDeEntrega frete) throws FreteInexistenteException;//THROWS FRETE NAO EXISTE
-String listarFrete() throws ListaDeFretesVaziaException;//THROWS NAO EXISTEM FRETES
+boolean existeFrete(ServicoDeEntrega frete);
+void removerFrete(ServicoDeEntrega frete) throws FreteInexistenteException;
+ServicoDeEntrega procurarFrete(ServicoDeEntrega frete)throws FreteInexistenteException;
+void atualizarFrete (ServicoDeEntrega frete,ServicoDeEntrega newFrete)throws FreteInexistenteException;
 }

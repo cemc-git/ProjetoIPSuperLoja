@@ -1,4 +1,4 @@
-package ServicoDeEntrega;
+package projeto;
 
 public class FreteJaExistenteException extends Exception {
 	public FreteJaExistenteException(ServicoDeEntrega frete) {
