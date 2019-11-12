@@ -1,4 +1,4 @@
-package ServicoDeEntrega;
+package projeto;
 
 public class DIException extends Exception{
 	private double distancia;
