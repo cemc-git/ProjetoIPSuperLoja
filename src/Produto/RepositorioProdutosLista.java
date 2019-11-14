@@ -1,37 +1,37 @@
-package Produto;
-public class RepositorioProdutosLista implements RepositorioProduto {
+package produto;
+public class RepositorioprodutosLista implements RepositorioProduto {
 
-	private Produto produto;
-	private RepositorioProdutosLista proximo;
+	private produto produto;
+	private RepositorioprodutosLista proximo;
 
-	public RepositorioProdutosLista() {
+	public RepositorioprodutosLista() {
 		this.produto = null;
 		this.proximo = null;
 	}
 
-	public Produto getProduto() {
+	public produto getProduto() {
 		return produto;
 	}
 
-	public RepositorioProdutosLista getProximo() {
+	public RepositorioprodutosLista getProximo() {
 		return proximo;
 	}
 	@Override
-	public void cadastrar(Produto produto) {
+	public void cadastrar(produto produto) {
 		if (this.proximo == null) {
 			this.produto = produto;
-			this.proximo = new RepositorioProdutosLista();
+			this.proximo = new RepositorioprodutosLista();
 		} else {
 			this.proximo.cadastrar(produto);
 		}
 	}
 	@Override
-	public String remover(Produto produto, String nomeproduto) {
+	public String remover(produto produto, String nomeproduto) {
 		if (this.produto == null) {
-			return "Esse produto não existe";
+			return "Esse produto nÃ£o existe";
 		}
 
-		else if (this.produto.getnomeproduto() == nomeproduto) {
+		else if (this.produto.getNome_Produto() == nomeproduto) {
 			this.produto = this.proximo.produto;
 			this.proximo = this.proximo.proximo;
 			return "%s, " + nomeproduto + "removido com sucesso";
@@ -41,10 +41,10 @@ public class RepositorioProdutosLista implements RepositorioProduto {
 
 	}
 	@Override
-	public boolean procurar(Produto produto, String nomeproduto) {
+	public boolean procurar(produto produto, String nomeproduto) {
 		if (this.produto == null) {
 			return false;
-		} else if (this.produto.getnomeproduto() == nomeproduto) {
+		} else if (this.produto.getNome_Produto() == nomeproduto) {
 			return true;
 		} else {
 			return this.proximo.procurar(produto, nomeproduto);
