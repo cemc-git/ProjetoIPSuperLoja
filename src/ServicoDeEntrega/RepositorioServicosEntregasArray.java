@@ -7,12 +7,8 @@ public class RepositorioServicosEntregasArray implements RepositorioServicoEntre
 		fretes=new ServicoDeEntrega[tam];		
 	}
 	@Override
-	public void inserirFrete(ServicoDeEntrega frete) throws FreteVazioException {//EXCEPTION "FRETE" VAZIO
+	public void inserirFrete(ServicoDeEntrega frete) {
 		// TODO Auto-generated method stub
-		
-		if (frete==null) {
-			throw new FreteVazioException(frete);
-		}
 		if (indice<=fretes.length) {
 			fretes[indice]=frete;
 			indice++;
@@ -24,51 +20,55 @@ public class RepositorioServicosEntregasArray implements RepositorioServicoEntre
 		}
 		
 	}
-	public boolean existeFrete(ServicoDeEntrega frete) {// EXCEPTION NAO EXISTE "FRETE" PROCURADO
+	public boolean existeFrete(int identificador) {
 		// TODO Auto-generated method stub
 		boolean existeFrete=false;
 		for (int i = 0; i < fretes.length; i++) {
-			if (fretes[i]==frete) {
+			if (fretes[i].equalsFrete(identificador)) {
 				existeFrete=true;
 			}
 		}	
 		return existeFrete;
 	}
 	@Override
-	public void removerFrete(ServicoDeEntrega frete) throws FreteInexistenteException {
+	public void removerFrete(int identificador) throws FreteInexistenteException {
 		// TODO Auto-generated method stub
+		boolean removido=false;
 		for (int i = 0; i < fretes.length; i++) {
-			if (fretes[i]==frete) {
+			if (fretes[i].equalsFrete(identificador)) {
 				fretes[i]=null;
+				removido=true;
 			}
+		}if (removido==false) {
+			throw new FreteInexistenteException();
 		}
 	}
 	@Override
-	public ServicoDeEntrega procurarFrete(ServicoDeEntrega frete) throws FreteInexistenteException {
+	public ServicoDeEntrega procurarFrete(int identificador) throws FreteInexistenteException {
 		// TODO Auto-generated method stub
 		ServicoDeEntrega freteRetornado=null;
 		for (int i = 0; i < fretes.length; i++) {
-			if (fretes[i]==frete) {
+			if (fretes[i].equalsFrete(identificador)) {
 				freteRetornado=fretes[i];
 		}
 	}
 		if (freteRetornado==null) {
-			throw new FreteInexistenteException(frete);
+			throw new FreteInexistenteException();
 		}else {
 			return freteRetornado;
 		}
 	}
 	@Override
-	public void atualizarFrete(ServicoDeEntrega frete, ServicoDeEntrega newFrete) throws FreteInexistenteException {
+	public void atualizarFrete(int identificador, ServicoDeEntrega newFrete) throws FreteInexistenteException {
 		// TODO Auto-generated method stub
 		boolean atualizou=false;
 		for (int i = 0; i < fretes.length; i++) {
-			if (fretes[i]==frete) {
+			if (fretes[i].equalsFrete(identificador)) {
 				fretes[i]=newFrete;
 				atualizou=true;
 			}
-		}if (atualizou) {
-			throw new FreteInexistenteException(frete);
+		}if (atualizou==false) {
+			throw new FreteInexistenteException();
 		}
 	}
 	
