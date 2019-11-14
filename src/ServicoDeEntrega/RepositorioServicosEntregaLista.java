@@ -1,5 +1,4 @@
 package ServicoDeEntrega;
-
 public class RepositorioServicosEntregaLista implements RepositorioServicoEntrega {
 	private ServicoDeEntrega frete;
 	private RepositorioServicosEntregaLista proximo;
@@ -18,9 +17,11 @@ public class RepositorioServicosEntregaLista implements RepositorioServicoEntreg
 	}
 
 	@Override
-	public void inserirFrete(ServicoDeEntrega frete) {
+	public void inserirFrete(ServicoDeEntrega frete) throws FreteVazioException { // EXCEPTION																												// INSERIR																												// "FRET																											// VAZIO
 		// TODO Auto-generated method stub
-		if (this.frete == null) {
+		if (frete == null) {
+			throw new FreteVazioException(frete);
+		}else if (this.frete == null) {
 			this.frete = frete;
 			this.proximo = new RepositorioServicosEntregaLista();
 		} else {
@@ -29,60 +30,49 @@ public class RepositorioServicosEntregaLista implements RepositorioServicoEntreg
 	}
 
 	@Override
-	public boolean existeFrete(int identificador) {
+	public boolean existeFrete(ServicoDeEntrega frete) { // EXCEPTION NAO EXISTE // "FRETE" PROCURADO
+		// TODO Auto-generated method stub
 		boolean existeFrete = false;
 		if (this.frete != null) {
-			if (this.frete.equalsFrete(identificador)) {
+			if (this.frete == frete) {
 				existeFrete = true;
 			} else {
-				this.proximo.existeFrete(identificador);
+				this.proximo.existeFrete(frete);
 			}
 		}
 		return existeFrete;
 	}
 
 	@Override
-	public void removerFrete(int identificador) throws FreteInexistenteException {
+	public void removerFrete(ServicoDeEntrega frete) throws FreteInexistenteException {
 		// TODO Auto-generated method stub
-
 		if (this.frete != null) {
-			if (this.frete.equalsFrete(identificador)) {
+			if (this.frete == frete) {
 				this.frete = this.proximo.frete;
 				this.proximo = this.proximo.proximo;
 			} else {
-				this.proximo.removerFrete(identificador);
+				this.proximo.removerFrete(frete);
 			}
-		} else {
-			throw new FreteInexistenteException();
 		}
 	}
 
 	@Override
-	public ServicoDeEntrega procurarFrete(int identificador) throws FreteInexistenteException {
+	public ServicoDeEntrega procurarFrete(ServicoDeEntrega frete) throws FreteInexistenteException {
 		// TODO Auto-generated method stub
-		if (this.frete != null) {
-			if (this.frete.equalsFrete(identificador)) {
-				return this.frete;
-			} else {
-				return this.proximo.procurarFrete(identificador);
-			}
+		if (this.frete == frete) {
+			return this.frete;
 		} else {
-			throw new FreteInexistenteException();
+			return this.proximo.procurarFrete(frete);
 		}
-
 	}
 
 	@Override
-	public void atualizarFrete(int identificador, ServicoDeEntrega newFrete) throws FreteInexistenteException {
+	public void atualizarFrete(ServicoDeEntrega frete, ServicoDeEntrega newFrete) throws FreteInexistenteException {
 		// TODO Auto-generated method stub
-		if (this.frete != null) {
-			if (this.frete.equalsFrete(identificador)) {
-				this.frete = newFrete;
-			} else {
-				this.proximo.atualizarFrete(identificador, newFrete);
-			}
+		if (this.frete == frete) {
+			this.frete = newFrete;
 		} else {
-			throw new FreteInexistenteException();
+			this.proximo.atualizarFrete(frete, newFrete);
 		}
 	}
 

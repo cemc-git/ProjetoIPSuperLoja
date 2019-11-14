@@ -1,13 +1,15 @@
 package ServicoDeEntrega;
 
 public class DIException extends Exception{
-	private int distancia;
-		
-	public DIException(int distancia) {
-		super ("Distancia fornecida e invalida!");
-		this.distancia=distancia;	
+	private double distancia;
+	private ServicoDeEntrega frete;
+	
+	public DIException(double distancia,ServicoDeEntrega frete) {
+		super ("Distância fornecida é inválida!");
+		this.distancia=distancia;
+		this.frete=frete;	
 	}
-	public int getDistancia() {
+	public double getDistancia() {
 		return distancia;
 	}
 }

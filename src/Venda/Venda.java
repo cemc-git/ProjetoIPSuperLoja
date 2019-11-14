@@ -1,22 +1,17 @@
-package Venda;
-
-import Funcionario.Funcionario;
-import Cliente.Cliente;
-import Produto.RepositorioProduto;
-import ServicoDeEntrega.ServicoDeEntrega;
-
 public class Venda {
+	
 
 	private Cliente cliente;
 	private Funcionario funcionario;
-	private RepositorioProduto carrinho;
+	private RepositorioProdutos carrinho;
+	private ServicoDeEntrega frete;
 	private int id;
-
-public Venda(Cliente cliente,Funcionario funcionario,RepositorioProduto carrinho,ServicoDeEntrega frete, int id) {
-	this.cliente=  cliente;
-	this.funcionario = funcionario;
-	this.carrinho= carrinho;
-	this.id=id;
+	
+public Venda(Cliente cliente,Funcionario funcionario,RepositorioProdutos carrinho,ServicoDeEntrega frete) {
+	this.Cliente cliente=Cliente cliente;
+	this.Funcionario funcionario=Funcionario funcionario;
+	this.RepositorioProdutos carrinho=RepositorioProdutos carrinho;
+	this.ServicoDeEntrega frete=ServicoDeEntrega frete;
 }
 
 	public Cliente getCliente() {
@@ -35,18 +30,21 @@ public Venda(Cliente cliente,Funcionario funcionario,RepositorioProduto carrinho
 		this.funcionario = funcionario;
 	}
 
-	public RepositorioProduto getCarrinho() {
+	public RepositorioProdutos getCarrinho() {
 		return carrinho;
 	}
 
-	public void setCarrinho(RepositorioProduto carrinho) {
-		this.carrinho  = carrinho;
+	public void setCarrinho(RepositorioProdutos carrinho) {
+		this.carrinho = carrinho;
 	}
 
-	
+	public ServicoDeEntrega getFrete() {
+		return frete;
+	}
 
-	
-
+	public void setFrete(ServicoDeEntrega frete) {
+		this.frete = frete;
+	}
 	public int getId() {
 		return id;
 	}
