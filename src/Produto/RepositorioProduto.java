@@ -1,6 +1,7 @@
-package Produto;
+package produto;
+
 public interface RepositorioProduto {
-		public void cadastrar(Produto produto);
-		public String remover(Produto produto, String nomeproduto);
+		public String remover(Produto produto, String nomeproduto) throws ProdutoInexistenteException;
 		public  boolean procurar(Produto produto, String nomeproduto);
+		public void cadastrar(Produto produto) throws ProdutoInexistenteException;
 }
