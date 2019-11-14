@@ -1,8 +1,8 @@
 package ServicoDeEntrega;
 
 public class FreteInexistenteException extends Exception {
-	public FreteInexistenteException(ServicoDeEntrega frete) {
-		super ("O Frete procurado não existe!");
+	public FreteInexistenteException() {
+		super ("O Frete procurado nao existe!");
 	}
 }
 
