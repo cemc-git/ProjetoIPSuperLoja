@@ -1,3 +1,6 @@
+package Funcionario;
+
+import Pessoa.Pessoa;
 
 public class RepositorioFuncionarioArray implements RepositorioFuncionario {
 	private Funcionario[] repositorio;
@@ -15,7 +18,7 @@ public class RepositorioFuncionarioArray implements RepositorioFuncionario {
 
 	public void inserir(Funcionario funcionario) throws FuncionarioCadastradoException {
 		for (int i = 0; i < this.contador; i++) {
-			if (this.funcionario[i] == funcionario) {
+			if (this.repositorio[i] == funcionario) {
 				throw new FuncionarioCadastradoException();
 			}
 		}
@@ -29,7 +32,7 @@ public class RepositorioFuncionarioArray implements RepositorioFuncionario {
 		Funcionario resposta = null;
 		int i = this.getContador(cpf);// vai para o metodo getContador e joga cpf lá
 		if (i == this.contador) {
-//Quando i for igual a this.indice, dará erro(Não encontrou o funcionário)	
+//Quando i for igual a this.contador, dará erro(Não encontrou o funcionário)	
 			throw new FuncionarioNaoExisteException();
 		} else {
 			resposta = this.repositorio[i];
@@ -57,36 +60,37 @@ public class RepositorioFuncionarioArray implements RepositorioFuncionario {
 //Se i for igual a this.contador, ele nao encontrou
 	}
 
-	public void atualizar(Funcionario funcionario) throws FuncionarioNaoEncontradoException {
+	public void atualizar(Funcionario funcionario) throws FuncionarioNaoExisteException {
 		int i = this.getContador(funcionario.getCpf());
 		if (i == this.contador) {
-			throw new FuncionarioNaoEncontradoException();
+			throw new FuncionarioNaoExisteException();
 		} else {
 			this.repositorio[i] = funcionario;
 		}
 	}
 
-	public void remover(String cpf) throws FuncionarioNaoEncontradoException {
+	public void remover(String cpf) throws FuncionarioNaoExisteException {
 		int i = this.getContador(cpf);
 		if (i == this.contador) {
-			throw new FuncionarioNaoEncontradoException();
+			throw new FuncionarioNaoExisteException();
 		} else {
-			//this.contador aponta para uma posição vazia(sempre)
+			// this.contador aponta para uma posição vazia(sempre)
 			this.contador = this.contador - 1;
 			this.repositorio[i] = this.repositorio[this.contador];
-			//botei eu que sou posição 1 na posicao q antes era de daniel, logo eu to na posicao 0 e 1
+			// botei eu que sou posição 1 na posicao q antes era de daniel, logo eu to na
+			// posicao 0 e 1
 			this.repositorio[this.contador] = null;
-			//eu na posicao1 é agora e null
+			// eu na posicao1 é agora e null
 		}
 	}
 
 	public boolean existe(String cpf) {
 		int i = this.getContador(cpf);
-		if(i==this.contador) {
-		return false;	
-		}else {
-		return true;	
-		}	
+		if (i == this.contador) {
+			return false;
+		} else {
+			return true;
+		}
 	}
 
 }
