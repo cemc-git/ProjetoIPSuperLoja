@@ -13,9 +13,23 @@ import Funcionario.Funcionario;
 public class CadastroVenda {
 	private RepositorioVenda repo;
 
+	
+	public CadastroVenda(String tipoDoRepo) {
+		if (tipoDoRepo.equals("Array")) {
+			repo =new RepositorioVendaArray();
+		}else if (tipoDoRepo.equals("Lista")) {
+			repo =new RepositorioVendaLista();
+		}else {
+		//nao vai entrar aqui porque é a propria fachada q vai definir o "tipoDoRepo"
+		}
+		
+	}
+	
+	
 	public void cadastrar(Venda venda, RepositorioCliente clientesCadastrados, RepositorioFuncionario funcionarios)
 			throws InserirExistenteException, PessoaNaoCadastradoException {
 		if (repo.existe(venda)) {
+			//erro de venda ja existente
 			InserirExistenteException e = new InserirExistenteException(venda);
 			throw e;
 		} else if (!clientesCadastrados.existe(venda.getCliente().getNome(), venda.getCliente().getCpf())) {
@@ -34,5 +48,36 @@ public class CadastroVenda {
 		}
 
 	}
+	
+	
+	
+	public boolean existe(Venda venda) {
+		
+		return repo.existe(venda);
+	
+	}
+	
+	
+	
+	public Venda buscar(int id) throws BuscaIdException {
+		
+		return repo.buscar(id);
+		
+		
+	}
 
+	
+	
+	
+	public void atualizar(Venda vendaAntiga, Venda vendaAtualizada) throws VendaNaoEncontradaException{
+		
+		repo.atualizar(vendaAntiga, vendaAtualizada);
+		
+	}
+	
+	
+	public void remover ( Venda venda) throws VendaNaoEncontradaException{
+		repo.remover(venda);
+		
+	}
 }

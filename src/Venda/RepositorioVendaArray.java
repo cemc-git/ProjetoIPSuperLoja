@@ -18,7 +18,7 @@ public class RepositorioVendaArray implements RepositorioVenda {
 	public void inserir(Venda venda) {
 		if (cont >= repositorio.length) {
 
-			Venda[] aux = new Venda[repositorio.length + 1];
+			Venda[] aux = new Venda[repositorio.length*2];
 			for (int i = 0; i < repositorio.length; i++) {
 				aux[i] = repositorio[i];
 			}
