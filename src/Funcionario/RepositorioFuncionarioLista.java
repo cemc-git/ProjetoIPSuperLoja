@@ -25,7 +25,7 @@ public class RepositorioFuncionarioLista implements RepositorioFuncionario {
 	}
 
 	@Override
-	// demetir e igual a remover
+	// demitir e igual a remover
 	public void remover(String cpf) throws FuncionarioNaoExisteException {
 		if (this.funcionario!= null) {
 			if (this.funcionario.getCpf().equals(cpf)) {
@@ -55,9 +55,7 @@ public class RepositorioFuncionarioLista implements RepositorioFuncionario {
 	@Override
 	public void atualizar(Funcionario funcionario) throws FuncionarioNaoExisteException {
 		if (this.funcionario != null) {
-			//se eu pegasse this.funcionario.getCpf() ia dar nullexception, tem que pegar o objeto, ou seja, this.funcionario.
-			if (this.funcionario.equals(funcionario)) {
-				//vai na classe funcionario no metodo equals e leva o parametro funcionario pra comparar com this.funcionario, se for true entra aqui
+			if (this.funcionario.getCpf().equals(funcionario.getCpf())) {				
 				this.funcionario = funcionario;
 			} else {
 				this.proximo.atualizar(funcionario);

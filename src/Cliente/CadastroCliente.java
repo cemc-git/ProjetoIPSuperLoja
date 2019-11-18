@@ -10,7 +10,7 @@ public class CadastroCliente {
     	 else if(cliente.getNome().equals("")|| cliente.getCpf().length()!=11) {
     		 CamposInvalidoException erro = new CamposInvalidoException();
     	 }
-    	 f
+    	 
     	 
      }
      

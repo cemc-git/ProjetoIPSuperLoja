@@ -1,6 +1,6 @@
 package Cliente;
 
-import Venda.RepositorioVendas;
+import Venda.RepositorioVenda;
 import Pessoa.Pessoa;
 
 public class Cliente extends Pessoa {

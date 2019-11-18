@@ -1,51 +1,41 @@
 package ServicoDeEntrega;
-public class ServicoDeEntrega {
-	private double distancia;
+
+import Venda.Venda;
+
+public class ServicoDeEntrega { 
+	private int distancia;
 	private String tipoDeEntrega;
 	private Venda venda;
-	
-	public ServicoDeEntrega(double distanciaX,Venda venda,String tipoDeEntrega) {
-		this.distancia=distanciaX;
-		this.tipoDeEntrega=tipoDeEntrega;
-		this.venda=venda;
-	}
+	private int identificador;
 
-	public double getDistancia() {
+	public ServicoDeEntrega(int distancia, Venda venda, String tipoDeEntrega,int identificador) {
+		this.distancia = distancia;
+		this.tipoDeEntrega = tipoDeEntrega;
+		this.venda = venda;
+		this.identificador=identificador;
+	}
+	public int getDistancia() {
 		return distancia;
 	}
-	
+
+	public int getIdentificador() {
+		return identificador;
+	}
+
 	public Venda getVenda() {
 		return venda;
 	}
+
 	public String getTipoDeEntrega() {
 		return tipoDeEntrega;
 	}
-	
-	public double calcularPrecoFrete(ServicoDeEntrega frete) throws DIException {//EXCEPTION DISTANCIA INVALIDA
-		double calculo=0;
-		if (this.distancia>0&&this.distancia<100) {
-			calculo=Math.sqrt(Math.pow(this.distancia, 2));
+	public boolean equalsFrete(int identificador) {
+		if (this.identificador == identificador) {
+			return true;
+		} else {
+			return false;
 		}
-		else if (this.distancia>=100&&this.distancia<1000) {
-			calculo=Math.sqrt(Math.pow(this.distancia, 2))*10;
-		}else if (this.distancia>1000) {
-			calculo=Math.sqrt(Math.pow(this.distancia, 2))*100;
-		}else if (this.distancia<0) {
-			DIException erro;
-			erro=new DIException(this.distancia,frete);
-			throw erro;
-		}
-		switch (this.tipoDeEntrega) {
-		case "rapidex":
-			calculo*=5;
-			break;
-		case "interplanetaria":
-			calculo*=20;
-			break;
-		default:
-			break;
-		}
-		return calculo;
-	}	
-}
+	}
+
+	}
 

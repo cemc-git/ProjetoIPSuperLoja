@@ -32,15 +32,15 @@ public class Funcionario extends Pessoa {
 	public void setNivel(int nivel) {
 		this.nivel = nivel;
 	}
+
+	@Override
+	public void gerarBonus(Pessoa pessoa) {
+		// TODO Auto-generated method stub
+		
+	}
     
 	
-	public boolean equals(Funcionario outro) {
-	if(this.getCpf().equals(outro.getCpf()))	{
-		return true;
-	} else {
-		return false;
-	}
-	}
+	
 	
 	
 	

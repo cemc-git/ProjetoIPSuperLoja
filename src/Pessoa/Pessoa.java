@@ -1,6 +1,6 @@
 package Pessoa;
 
-import Venda.RepositorioVendas;
+import Venda.RepositorioVenda;
 
 public abstract class Pessoa {
 	private String nome;

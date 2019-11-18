@@ -10,10 +10,7 @@ public class RepositorioFuncionarioArray implements RepositorioFuncionario {
 		this.repositorio = new Funcionario[tamanho]; // Array criado
 		this.contador = 0;
 
-		for (int i = 0; i < repositorio.length; i++) {
-			repositorio[i] = null;
-		}
-
+	
 	}
 
 	public void inserir(Funcionario funcionario) throws FuncionarioCadastradoException {
@@ -25,6 +22,7 @@ public class RepositorioFuncionarioArray implements RepositorioFuncionario {
 
 		repositorio[contador] = funcionario;
 		contador = contador++;
+		//this.contador sempre apontará para uma posição vazia
 
 	}
 
@@ -49,7 +47,7 @@ public class RepositorioFuncionarioArray implements RepositorioFuncionario {
 		while ((!achou) && (i < this.contador)) {
 //Se achou for vdd ele entra altomaticamente(mesma coisa que acontece no if)	
 			n = repositorio[i].getCpf();
-			if (n.contentEquals(cpf)) {
+			if (n.equals(cpf)) {
 				achou = true;
 			} else {
 				i = i + 1;
@@ -94,3 +92,4 @@ public class RepositorioFuncionarioArray implements RepositorioFuncionario {
 	}
 
 }
+
