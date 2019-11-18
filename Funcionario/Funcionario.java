@@ -7,30 +7,37 @@ public class Funcionario extends Pessoa {
 //Atributos Funcionário	
 	private int comissao;
 	private int nivel;
-	private Funcionario proximo;
-
+	private double salario;
+	
 //Construtor Funcionario
-	public Funcionario(int comissao, int nivel, String nome, String cpf, int bonus) {
-		super(nome, cpf, bonus);
-		this.comissao = 0;
-		this.nivel = 1;
-		this.proximo = null;
+	public Funcionario(String nome, String cpf,double salario) {
+		super(nome, cpf);
+		this.salario=salario;//igualei this.salario a salario pq o o salario vai ser colocado pelo usuario no main
 	}
 
-	public int getComissao() {
-		return comissao;
+	
+	public double getSalario() {
+		return salario;
+	}
+	
+	public void setSalario(double salario) {
+		this.salario=salario;
 	}
 
-	public void setComissao(int comissao) {
-		this.comissao = comissao;
-	}
+	
 
-	public int getNivel() {
-		return nivel;
-	}
-
-	public void setNivel(int nivel) {
-		this.nivel = nivel;
+	@Override
+	public void gerarBonus(Pessoa pessoa) {
+		
+		this.setBonus(getBonus()+1);
+		
+		if(this.getBonus()>=10) {			
+		this.setSalario(this.getSalario()+ 50);
+		this.setBonus(0);
+		}
+		
+		
+		
 	}
     
 	
