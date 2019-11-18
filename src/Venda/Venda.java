@@ -1,10 +1,11 @@
 package Venda;
 
 import Funcionario.Funcionario;
+
 import Cliente.Cliente;
 import Produto.RepositorioProduto;
-import ServicoDeEntrega.ServicoDeEntrega;
 
+import Produto.RepositorioProduto;
 public class Venda {
 
 	private Cliente cliente;
@@ -12,7 +13,7 @@ public class Venda {
 	private RepositorioProduto carrinho;
 	private int id;
 
-public Venda(Cliente cliente,Funcionario funcionario,RepositorioProduto carrinho,ServicoDeEntrega frete, int id) {
+public Venda(Cliente cliente,Funcionario funcionario,RepositorioProduto carrinho, int id) {
 	this.cliente=  cliente;
 	this.funcionario = funcionario;
 	this.carrinho= carrinho;
