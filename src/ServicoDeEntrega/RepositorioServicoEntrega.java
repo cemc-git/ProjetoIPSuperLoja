@@ -1,7 +1,8 @@
 package ServicoDeEntrega;
 
 public interface RepositorioServicoEntrega {
-	void inserirFrete(ServicoDeEntrega frete) ;
+	
+	void inserirFrete(ServicoDeEntrega frete);
 
 	boolean existeFrete(int identificador);
 
@@ -10,4 +11,5 @@ public interface RepositorioServicoEntrega {
 	ServicoDeEntrega procurarFrete(int identificador) throws FreteInexistenteException;
 
 	void atualizarFrete(int identificador, ServicoDeEntrega newFrete) throws FreteInexistenteException;
+
 }

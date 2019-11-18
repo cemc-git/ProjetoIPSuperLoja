@@ -3,10 +3,10 @@ public class RepositorioServicosEntregasArray implements RepositorioServicoEntre
 	private ServicoDeEntrega fretes[];
 	private int indice;
 	
-	public RepositorioServicosEntregasArray(int tam) {
-		fretes=new ServicoDeEntrega[tam];		
+	public RepositorioServicosEntregasArray() {
+		fretes=new ServicoDeEntrega[30];		
 	}
-	@Override
+	
 	public void inserirFrete(ServicoDeEntrega frete) {
 		// TODO Auto-generated method stub
 		if (indice<=fretes.length) {
@@ -18,8 +18,9 @@ public class RepositorioServicosEntregasArray implements RepositorioServicoEntre
 			fretes=new ServicoDeEntrega[fretes.length*2];
 			fretes=aux;
 		}
-		
+
 	}
+	
 	public boolean existeFrete(int identificador) {
 		// TODO Auto-generated method stub
 		boolean existeFrete=false;
@@ -71,5 +72,5 @@ public class RepositorioServicosEntregasArray implements RepositorioServicoEntre
 			throw new FreteInexistenteException();
 		}
 	}
-	
 }
+

@@ -14,11 +14,10 @@ public class ServicoDeEntrega {
 		this.venda = venda;
 		this.identificador=identificador;
 	}
-
 	public int getDistancia() {
 		return distancia;
 	}
-	
+
 	public int getIdentificador() {
 		return identificador;
 	}
@@ -30,7 +29,6 @@ public class ServicoDeEntrega {
 	public String getTipoDeEntrega() {
 		return tipoDeEntrega;
 	}
-
 	public boolean equalsFrete(int identificador) {
 		if (this.identificador == identificador) {
 			return true;
@@ -39,4 +37,5 @@ public class ServicoDeEntrega {
 		}
 	}
 
-}
+	}
+

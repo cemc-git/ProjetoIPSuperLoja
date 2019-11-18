@@ -1,34 +1,28 @@
 package ServicoDeEntrega;
-
 public class RepositorioServicosEntregaLista implements RepositorioServicoEntrega {
 	private ServicoDeEntrega frete;
 	private RepositorioServicosEntregaLista proximo;
-
 	public RepositorioServicosEntregaLista() {
 		this.frete = null;
 		this.proximo = null;
 	}
-
 	public ServicoDeEntrega getFrete() {
 		return frete;
 	}
-
 	public RepositorioServicosEntregaLista getProximo() {
 		return proximo;
 	}
 
-	@Override
+	
 	public void inserirFrete(ServicoDeEntrega frete) {
-		// TODO Auto-generated method stub
+		
 		if (this.frete == null) {
 			this.frete = frete;
 			this.proximo = new RepositorioServicosEntregaLista();
 		} else {
 			this.proximo.inserirFrete(frete);
-		}
-	}
-
-	@Override
+		}}
+ 
 	public boolean existeFrete(int identificador) {
 		boolean existeFrete = false;
 		if (this.frete != null) {
@@ -40,8 +34,15 @@ public class RepositorioServicosEntregaLista implements RepositorioServicoEntreg
 		}
 		return existeFrete;
 	}
-
-	@Override
+			
+		
+	
+	
+	
+	
+	
+	
+	
 	public void removerFrete(int identificador) throws FreteInexistenteException {
 		// TODO Auto-generated method stub
 
@@ -50,6 +51,7 @@ public class RepositorioServicosEntregaLista implements RepositorioServicoEntreg
 				this.frete = this.proximo.frete;
 				this.proximo = this.proximo.proximo;
 			} else {
+				
 				this.proximo.removerFrete(identificador);
 			}
 		} else {
@@ -58,21 +60,23 @@ public class RepositorioServicosEntregaLista implements RepositorioServicoEntreg
 	}
 
 	@Override
-	public ServicoDeEntrega procurarFrete(int identificador) throws FreteInexistenteException {
-		// TODO Auto-generated method stub
-		if (this.frete != null) {
-			if (this.frete.equalsFrete(identificador)) {
-				return this.frete;
+			
+		public ServicoDeEntrega procurarFrete(int identificador) throws FreteInexistenteException {
+			// TODO Auto-generated method stub
+			if (this.frete != null) {
+				if (this.frete.equalsFrete(identificador)) {
+					return this.frete;
+				} else {
+					return this.proximo.procurarFrete(identificador);
+				}
 			} else {
-				return this.proximo.procurarFrete(identificador);
+				throw new FreteInexistenteException();
 			}
-		} else {
-			throw new FreteInexistenteException();
+
 		}
 
-	}
-
-	@Override
+		@Override
+			
 	public void atualizarFrete(int identificador, ServicoDeEntrega newFrete) throws FreteInexistenteException {
 		// TODO Auto-generated method stub
 		if (this.frete != null) {
@@ -85,5 +89,5 @@ public class RepositorioServicosEntregaLista implements RepositorioServicoEntreg
 			throw new FreteInexistenteException();
 		}
 	}
-
-}
+		}
+		

@@ -2,7 +2,7 @@ package ServicoDeEntrega;
 
 public class DIException extends Exception{
 	private int distancia;
-		
+
 	public DIException(int distancia) {
 		super ("Distancia fornecida e invalida!");
 		this.distancia=distancia;	
@@ -10,4 +10,5 @@ public class DIException extends Exception{
 	public int getDistancia() {
 		return distancia;
 	}
+
 }
