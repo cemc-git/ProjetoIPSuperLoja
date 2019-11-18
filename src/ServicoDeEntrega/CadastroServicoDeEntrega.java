@@ -5,8 +5,13 @@ public class CadastroServicoDeEntrega {
       private RepositorioServicoEntrega fretes;
       private int contador;
 
-public CadastroServicoDeEntrega(RepositorioServicoEntrega repositorioFretes) {
-	this.fretes = repositorioFretes;
+public CadastroServicoDeEntrega(String tipoRepositorio) {
+	if (tipoRepositorio.equals("Array")) {
+		fretes=new RepositorioServicosEntregasArray();
+	}else {
+		fretes= new RepositorioServicosEntregaLista();
+	}
+	
 	this.contador=0;
 }
 
@@ -14,17 +19,62 @@ public int getContador() {
 	return contador;
 }
 
-public void cadastrarFrete(ServicoDeEntrega frete) throws FreteJaExistenteException, FreteVazioException, DIException {
-
+public void cadastrarFrete(ServicoDeEntrega frete) throws FreteJaExistenteException, FreteVazioException, DIException,IdentException,tipoEntException {
 	if (frete == null) {
 		throw new FreteVazioException();
-	}else if (frete.getDistancia()<0) {
+	}else if (frete.getDistancia()<0||frete.getDistancia()>Integer.MAX_VALUE) {
 		throw new DIException(frete.getDistancia());
-	} 
+	} else if (frete.getIdentificador()<0||frete.getIdentificador()>Integer.MAX_VALUE) {
+		throw new IdentException(frete.getIdentificador());
+	}else if (!frete.getTipoDeEntrega().equals("normal")&&!frete.getTipoDeEntrega().equals("ligeiro")&&!frete.getTipoDeEntrega().equals("very fast")) {
+		throw new tipoEntException();
+	}
 	else if (!fretes.existeFrete(frete.getIdentificador())) {
 		fretes.inserirFrete(frete);
 		contador++;
 	} else {
 		throw new FreteJaExistenteException();
 	}
-}}
+}
+public boolean existeFrete(int identificador) throws IdentException{
+	 if (identificador<0||identificador>Integer.MAX_VALUE) {
+			throw new IdentException(identificador);
+		}
+	 else if (fretes.existeFrete(identificador)==true) {
+		return true;
+	}else {
+		return false;
+	}
+}
+public void removerFrete(int identificador) throws FreteInexistenteException,IdentException{
+	 if (identificador<0||identificador>Integer.MAX_VALUE) {
+			throw new IdentException(identificador);
+		}
+	 else if (fretes.existeFrete(identificador)==true) {
+		fretes.removerFrete(identificador);
+		contador--;
+	}else {
+		throw new FreteInexistenteException();
+	}
+}
+public ServicoDeEntrega procurarFrete(int identificador) throws FreteInexistenteException,IdentException{
+	 if (identificador<0||identificador>Integer.MAX_VALUE) {
+			throw new IdentException(identificador);
+		}
+	if (fretes.existeFrete(identificador)==true) {
+		return fretes.procurarFrete(identificador);
+	}else {
+		throw new FreteInexistenteException();
+	}
+}
+public void atualizarFrete(int identificador,ServicoDeEntrega newFrete)throws FreteInexistenteException,IdentException{
+	 if (identificador<0||identificador>Integer.MAX_VALUE) {
+			throw new IdentException(identificador);
+		}
+	if (fretes.existeFrete(identificador)==true) {
+		fretes.atualizarFrete(identificador, newFrete);
+	}else {
+		throw new FreteInexistenteException();
+	}
+}
+}

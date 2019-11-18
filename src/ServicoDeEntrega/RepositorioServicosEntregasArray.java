@@ -3,8 +3,8 @@ public class RepositorioServicosEntregasArray implements RepositorioServicoEntre
 	private ServicoDeEntrega fretes[];
 	private int indice;
 	
-	public RepositorioServicosEntregasArray(int tam) {
-		fretes=new ServicoDeEntrega[tam];		
+	public RepositorioServicosEntregasArray() {
+		fretes=new ServicoDeEntrega[30];		
 	}
 	
 	public void inserirFrete(ServicoDeEntrega frete) {

@@ -2,7 +2,7 @@ package ServicoDeEntrega;
 
 public interface RepositorioServicoEntrega {
 	
-	void inserirFrete(ServicoDeEntrega frete) ;
+	void inserirFrete(ServicoDeEntrega frete);
 
 	boolean existeFrete(int identificador);
 
