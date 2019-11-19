@@ -1,7 +1,6 @@
 package Produto;
 public class RepositorioProdutosLista implements RepositorioProduto {
 	
-
 	private Produto produto;
 	private RepositorioProdutosLista proximo;
 
@@ -15,17 +14,18 @@ public class RepositorioProdutosLista implements RepositorioProduto {
 	public RepositorioProdutosLista getProximo() {
 		return proximo;
 	}
-	public void cadastrar(Produto produto) {
-		if (this.proximo == null) {
+	
+	public void cadastrarProduto(Produto produto) {
+		if (this.produto == null) {
 			this.produto = produto;
 			this.proximo = new RepositorioProdutosLista();
 		} else {
-			this.proximo.cadastrar(produto);
+			this.proximo.cadastrarProduto(produto);
 		}
 	}
-	public String remover(Produto produto, String nomeproduto) {
+	public String removerProduto(String nomeproduto) throws ProdutoNaoRemovidoException {
 		if (this.produto == null) {
-			return "Esse produto não existe";
+			throw new ProdutoNaoRemovidoException;
 		}
 
 		else if (this.produto.getNome_Produto() == nomeproduto) {
@@ -33,16 +33,17 @@ public class RepositorioProdutosLista implements RepositorioProduto {
 			this.proximo = this.proximo.proximo;
 			return "%s, " + nomeproduto + "removido com sucesso";
 		} else {
-			return this.proximo.remover(produto, nomeproduto);
+			return this.proximo.removerProduto(produto, nomeproduto);
 		}
 
 	}
-	public boolean procurar(Produto produto, String nomeproduto) {
+	public boolean procurarProduto(Produto produto, String nomeproduto) throws ProdutoNaoEncontradoException {
 		if (this.produto == null) {
-			return false;
+			throw new ProdutoNaoEncontradoException;
 		} else if (this.produto.getNome_Produto() == nomeproduto) {
 			return true;
 		} else {
 			return this.proximo.procurar(produto, nomeproduto);
 		}
-}}
+ }
+}
