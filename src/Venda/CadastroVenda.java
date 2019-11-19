@@ -20,21 +20,13 @@ public class CadastroVenda {
 	
 	
 	public void cadastrar(Venda venda, RepositorioCliente clientesCadastrados, RepositorioFuncionario funcionarios)
-			throws InserirExistenteException, PessoaNaoCadastradoException {
+			throws InserirExistenteException {
 		if (repo.existe(venda)) {
 			//erro de venda ja existente
 			InserirExistenteException e = new InserirExistenteException(venda);
 			throw e;
-		} else if (!clientesCadastrados.existe(venda.getCliente().getNome(), venda.getCliente().getCpf())) {
-			// erro de cliente nao cadastrado
-			PessoaNaoCadastradoException e = new PessoaNaoCadastradoException(venda.getCliente(), "Cliente");
-			throw e;
-		} else if (!funcionarios.existe(venda.getFuncionario().getCpf())) {
-			// erro de funcionario nao cadastrado
-			PessoaNaoCadastradoException e = new PessoaNaoCadastradoException(venda.getFuncionario(), "Funcionário");
-			throw e;
-		}
-
+		} 
+		// aqui estavam os erros de tentativa de inserir uma venda invalida(cliente ou funcionario invalido), porem esse erro esta em Venda.java
 		
 		else {
 			repo.inserir(venda);
