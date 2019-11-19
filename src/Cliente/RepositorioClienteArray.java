@@ -4,11 +4,10 @@ import java.util.Scanner;
 
 public class RepositorioClienteArray implements RepositorioCliente {
 
-	Cliente repositorioA[] = new Cliente[30];
-	private String nome;
-	private String cpf;
+	Cliente repositorioA[] = new Cliente[10];
+	
 	private Cliente cliente;
-	private Cliente clienteNovo;
+	
 
 	public void inserir(Cliente cliente) throws ClienteExisteException {
 		for (int i = 0; i < repositorioA.length; i++) {

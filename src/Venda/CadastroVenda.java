@@ -14,15 +14,8 @@ public class CadastroVenda {
 	private RepositorioVenda repo;
 
 	
-	public CadastroVenda(String tipoDoRepo) {
-		if (tipoDoRepo.equals("Array")) {
-			repo =new RepositorioVendaArray();
-		}else if (tipoDoRepo.equals("Lista")) {
-			repo =new RepositorioVendaLista();
-		}else {
-		//nao vai entrar aqui porque é a propria fachada q vai definir o "tipoDoRepo"
-		}
-		
+	public CadastroVenda(RepositorioVenda repositorioVenda) {
+		this.repo = repositorioVenda;
 	}
 	
 	

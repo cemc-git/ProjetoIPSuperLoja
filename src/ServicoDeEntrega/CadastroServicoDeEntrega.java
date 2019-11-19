@@ -5,14 +5,8 @@ public class CadastroServicoDeEntrega {
       private RepositorioServicoEntrega fretes;
       private int contador;
 
-public CadastroServicoDeEntrega(String tipoRepositorio) {
-	if (tipoRepositorio.equals("Array")) {
-		fretes=new RepositorioServicosEntregasArray();
-	}else {
-		fretes= new RepositorioServicosEntregaLista();
-	}
-	
-	this.contador=0;
+public CadastroServicoDeEntrega(RepositorioServicoEntrega repositorioServicoEntrega) {
+	this.fretes = repositorioServicoEntrega;
 }
 
 public int getContador() {
