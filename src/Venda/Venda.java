@@ -1,11 +1,11 @@
 package Venda;
 
-import Funcionario.Funcionario;
-
 import Cliente.Cliente;
+import Cliente.RepositorioCliente;
+import Funcionario.Funcionario;
+import Funcionario.RepositorioFuncionario;
 import Produto.RepositorioProduto;
 
-import Produto.RepositorioProduto;
 public class Venda {
 
 	private Cliente cliente;
@@ -13,12 +13,20 @@ public class Venda {
 	private RepositorioProduto carrinho;
 	private int id;
 
-public Venda(Cliente cliente,Funcionario funcionario,RepositorioProduto carrinho, int id) {
-	this.cliente=  cliente;
-	this.funcionario = funcionario;
-	this.carrinho= carrinho;
-	this.id=id;
-}
+	public Venda(Cliente cliente, Funcionario funcionario, RepositorioProduto carrinho, int id,
+			RepositorioFuncionario funcionariosDaLoja, RepositorioCliente clientesCadastrados) {
+		if (!clientesCadastrados.existe(cliente.getNome(), cliente.getCpf())) {
+			PessoaNaoCadastradoException e = new PessoaNaoCadastradoException(cliente, "Cliente");
+		} else if (!funcionariosDaLoja.existe(funcionario.getCpf())) {
+			PessoaNaoCadastradoException e = new PessoaNaoCadastradoException(funcionario, "Funcionário");
+		} else {
+
+			this.cliente = cliente;
+			this.funcionario = funcionario;
+			this.carrinho = carrinho;
+			this.id = id;
+		}
+	}
 
 	public Cliente getCliente() {
 		return cliente;
@@ -41,12 +49,8 @@ public Venda(Cliente cliente,Funcionario funcionario,RepositorioProduto carrinho
 	}
 
 	public void setCarrinho(RepositorioProduto carrinho) {
-		this.carrinho  = carrinho;
+		this.carrinho = carrinho;
 	}
-
-
-
-
 
 	public int getId() {
 		return id;
