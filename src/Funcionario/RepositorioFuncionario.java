@@ -1,8 +1,8 @@
 package Funcionario;
 
 public interface RepositorioFuncionario {
-//São os Metodos da minha interface4
-	public void inserir(Funcionario funcionario) throws FuncionarioCadastradoException;
+//Interface do repositório, todos os meétodos usandos no repositório terão que está aqui!
+	public void inserir(Funcionario funcionario) 
 
 	public void remover(String cpf) throws FuncionarioNaoExisteException;
 
@@ -11,5 +11,4 @@ public interface RepositorioFuncionario {
 	public void atualizar(Funcionario funcionario) throws FuncionarioNaoExisteException;
 
 	public boolean existe(String cpf);
-//em lista funcionario é o tipo do atributo.
 }
