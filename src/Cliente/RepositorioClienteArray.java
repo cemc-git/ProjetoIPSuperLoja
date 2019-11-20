@@ -1,39 +1,48 @@
 package Cliente;
 
-import java.util.Scanner;
 
 public class RepositorioClienteArray implements RepositorioCliente {
 
-	Cliente repositorioA[] = new Cliente[10];
+	private Cliente repositorioA[];
+	private int num;
 	
-	private Cliente cliente;
-	
+	public RepositorioClienteArray () {
+		this.repositorioA = new Cliente[30];
+		this.num=0;
+	}
 
 	public void inserir(Cliente cliente) throws ClienteExisteException {
-		for (int i = 0; i < repositorioA.length; i++) {
-			if (repositorioA[i].equals(null)) {
-				repositorioA[i] = this.cliente;
-			} else if (repositorioA[i].equals(this.cliente)) {
-				
-				// Cliente ja existe
-			} else {
+		if (num >= repositorioA.length) {
 
+			Cliente[] aux = new Cliente[repositorioA.length * 2];
+			for (int i = 0; i < repositorioA.length; i++) {
+				aux[i] = repositorioA[i];
 			}
+			this.repositorioA = aux;
+			inserir(cliente);
+		} else {
+			repositorioA[num] = cliente;
+			num++;
 		}
+
+			
+		
 
 	}
 
 	public Cliente buscar(String nome, String cpf) throws ClienteNExisteException {
 		Cliente aux = null;
 		for (int i = 0; i < repositorioA.length; i++) {
-			if (cliente.equals(repositorioA[i])) {
-				aux = cliente;
+			if (repositorioA[i].getNome().equals(nome) && repositorioA[i].getCpf().equals(cpf)) {
+				aux = repositorioA[i];
 
-			} else if (cliente.equals(null)) {
+			} else if (repositorioA[i].equals(null)) {
 				ClienteNExisteException erro = new ClienteNExisteException(nome, cpf);
-				break;
+				throw erro;
+				
 				// erro aqui, não existe
 			} else {
+				
 			}
 		}
 		return aux;
@@ -43,7 +52,7 @@ public class RepositorioClienteArray implements RepositorioCliente {
 	public boolean existe(String nome, String cpf) {
 		boolean aux = false;
 		for (int i = 0; i < repositorioA.length; i++) {
-			if (cliente.equals(repositorioA[i])) {
+			if (repositorioA[i].getNome().equals(nome)&&repositorioA[i].getCpf().equals(cpf)) {
 				aux = true;
 
 			} else {
@@ -61,6 +70,7 @@ public class RepositorioClienteArray implements RepositorioCliente {
 				break;
 			} else if (cliente.equals(null)) {
 				ClienteNAtualizadoException erro = new ClienteNAtualizadoException(cliente);
+				throw erro;
 			}
 		}
 
@@ -84,6 +94,7 @@ public class RepositorioClienteArray implements RepositorioCliente {
 			}
 			else if(i==repositorioA.length-1) {
 				ClienteNRemovidoException erro = new ClienteNRemovidoException(cliente);
+				throw erro;
 			}
 		}
 

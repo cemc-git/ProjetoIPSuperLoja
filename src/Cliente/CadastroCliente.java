@@ -13,8 +13,10 @@ public class CadastroCliente {
 		if (repositorio.existe(cliente.getNome(), cliente.getCpf())) {
 			// cliente ja existe
 			ClienteExisteException erro = new ClienteExisteException(cliente.getNome(), cliente.getCpf());
+			throw erro;
 		} else if (cliente.getNome().equals("") || cliente.getCpf().length() != 11) {
 			CamposInvalidoException erro = new CamposInvalidoException();
+			throw erro;
 		} else {
 			repositorio.inserir(cliente);
 		}

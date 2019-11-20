@@ -5,8 +5,8 @@ import Pessoa.Pessoa;
 
 public class Cliente extends Pessoa {
     private int desconto;
-	public Cliente(String nome, String cpf, int bonus) {
-		super(nome, cpf, bonus);
+	public Cliente(String nome, String cpf) {
+		super(nome, cpf);
 		desconto = 0;
 	}
 

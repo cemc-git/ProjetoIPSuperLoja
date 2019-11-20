@@ -5,6 +5,14 @@ public class ClienteExiste extends Exception {
 
 	public ClienteExiste(Cliente cliente) {
 		super("Cliente já cadastrado");
+this.cliente = cliente;
+	}
 
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
 	}
 }
