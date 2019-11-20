@@ -4,7 +4,7 @@ public class RepositorioProdutoArray implements RepositorioProduto {
 	private Produto[] produtos;
 	private int indice;
 	private int quantidade;
-	private boolean removido, existe;
+	private boolean removido, existe, atualizar;
 	
 
 	public void RepositorioprodutosArray(int quantidade) {
@@ -51,7 +51,7 @@ public class RepositorioProdutoArray implements RepositorioProduto {
 
 	}
 	
-	public Produto procurarProduto(Produto produto, String nomedoproduto) throws ProdutoNaoEncontradoException{
+	public Produto procurarProduto(String nomedoproduto) throws ProdutoNaoEncontradoException{
 		Produto aux = null;
 		for(int i = 0; i < produtos.length; i++) {
 			if (nomedoproduto.equals(produtos[i]));
@@ -63,4 +63,16 @@ public class RepositorioProdutoArray implements RepositorioProduto {
 		}
 		
 	}
+	public void atualizarProduto(Produto newproduto, String nomedoproduto) throws ProdutoNaoAtualizadoException {
+		
+		for (int i = 0; i < produtos.length; i++) {
+			if (produtos[i].equals(nomedoproduto)) {
+				produtos[i]= newproduto;
+				atualizar=true;
+			}
+		}if (atualizar==true) {
+			throw new ProdutoNaoAtualizadoException();
+		}
+	}
+
 }
