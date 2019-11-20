@@ -46,4 +46,12 @@ public class Produto {
 		this.valor_de_Venda = valor_de_venda;
 	}
 	
+	public boolean equalsProduto(String nomedoproduto) {
+		if (this.nome_Produto == nomedoproduto) {
+			return true;
+		} else {
+			return false;
+		}
+	}	
+	
 }

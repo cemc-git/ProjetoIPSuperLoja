@@ -1,29 +1,72 @@
 package Produto;
 
 public class CadastroProduto {
-	private RepositorioProduto prod;
+	private RepositorioProduto produtos;
+	private int cont;
 
-	public CadastroProduto(String tipo) {
-		if (tipo.equals("Array")) {
-			prod = new RepositorioProdutoArray();
+	public CadastroProduto(RepositorioProduto repositorioProduto) {
+		this.produtos = repositorioProduto;
+	}
 
+	public void CadastrarProduto(Produto produto) throws ProdutoJaExistenteException, ProdutoNaoAtualizadoException,
+			NomeProdutoInvalidoException, ValorProdutoException, ValorDeCompraeVendaException, ProdutoVazioException {
+		if (produtos == null) {
+			throw new ProdutoVazioException();
+		} else if (produto.getNome_Produto().equals("")) {
+			throw new NomeProdutoInvalidoException();
+			
+		} else if (produto.getValor() == 0) {
+			throw new ValorProdutoException();
+
+		} else if (produto.getValor_de_venda() == 0 || produto.getValor_de_Compra() == 0) {
+			throw new ValorDeCompraeVendaException();
 		} else {
-			prod = new RepositorioProdutosLista();
-		}
-	}
-
-	public void cadastrar(Produto produto, RepositorioProduto produtocadastrado) throws ProdutoJaExistenteException,
-			ProdutoInexistenteException, ProdutoNaoEncontradoException, ProdutoNaoRemovidoException {
-		if (produto == null) {
-			throw new ProdutoInexistenteException();
-		} else if (produtocadastrado != null) {
 			throw new ProdutoJaExistenteException();
-
-		} else if (produto.getNome_Produto().contentEquals("")) {
-			throw new ProdutoNaoEncontradoException();
-
 		}
-
 	}
+	public void RemoverProduto(String nomeproduto) throws ProdutoNaoRemovidoException, NomeProdutoInvalidoException, NomeProdutoInvalidoException, ProdutoInexistenteException {
+		if(nomeproduto.equals("")) {
+			throw new NomeProdutoInvalidoException();
+	} else if(produtos.existeProduto(nomeproduto)==true) {
+		
+	} else {
+		throw new ProdutoInexistenteException();
+	}
+		
+	}
+	public boolean ExisteProduto(String nomeproduto) throws ProdutoInexistenteException, ProdutoNaoEncontradoException, NomeProdutoInvalidoException {
+		if(nomeproduto.equals("")) {
+			throw new NomeProdutoInvalidoException();
+		} if (produtos.existeProduto(nomeproduto)==true) {
+			return true;
+		} else {
+			return false;
+		}
+		
+	}
+	public Produto ProcurarProduto(String nomeproduto) throws NomeProdutoInvalidoException, ProdutoNaoEncontradoException, ProdutoInexistenteException {
+		if(nomeproduto.equals("")) {
+			throw new NomeProdutoInvalidoException();
+		} if (produtos.existeProduto(nomeproduto)) {
+			return produtos.procurarProduto(nomeproduto);
+		} else {
+			throw new ProdutoNaoEncontradoException();
+		}
+	}
+	public void AtualizarProduto(Produto produto, String nomeproduto) throws NomeProdutoInvalidoException, ProdutoNaoEncontradoException, ProdutoInexistenteException, ProdutoNaoAtualizadoException{
+		if (nomeproduto.contentEquals("")) {
+			throw new NomeProdutoInvalidoException();
+		} if (produtos.existeProduto(nomeproduto)==true) {
+			produtos.atualizarProduto(produto, nomeproduto);
+		} else {
+			throw new ProdutoNaoEncontradoException();
+		}
+	}
+	
+	
+	
+	
+	
+	
 
 }
