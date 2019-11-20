@@ -36,15 +36,28 @@ public class Fachada {
 	private CadastroVenda venda;
 	private CadastroServicoDeEntrega frete;
 	private CadastroFuncionario funcionario;
-	
+
 	// private CadastroProduto produto//
 
-	public Fachada(RepositorioCliente repositorioCliente, RepositorioServicoEntrega repositorioServicoDeEntrega,RepositorioVenda repositorioVenda, RepositorioFuncionario repositoriofuncionario) {
-		this.cliente = new CadastroCliente(repositorioCliente);
-		this.frete = new CadastroServicoDeEntrega(repositorioServicoDeEntrega);
-		this.venda= new CadastroVenda(repositorioVenda);
-		this.funcionario= new CadastroFuncionario(repositoriofuncionario);
+	/*public Fachada(CadastroCliente repositorioCliente, CadastroServicoDeEntrega ServicoDeEntrega,
+			CadastroVenda repositorioVenda, CadastroFuncionario repositoriofuncionario) {
+		this.cliente = repositorioCliente;
+		this.frete = ServicoDeEntrega;
+		this.venda = repositorioVenda;
+		this.funcionario = repositoriofuncionario;
+	}*/
+
+	
+
+	public Fachada(CadastroCliente clientes, CadastroFuncionario funcionarios, CadastroVenda vendas,
+			CadastroServicoDeEntrega fretes) {
+		this.cliente = clientes;
+		this.frete = fretes ;
+		this.venda = vendas;
+		this.funcionario = funcionarios;
 	}
+
+
 
 	public void cadastrarCliente(Cliente cliente) throws ClienteExisteException, CamposInvalidoException {
 		this.cliente.cadastrar(cliente);
@@ -66,9 +79,6 @@ public class Fachada {
 		this.cliente.atualizar(cliente, clienteNovo);
 	}
 
-	
-	
-	
 	public void cadastrarServicoDeEntrega(ServicoDeEntrega frete)
 			throws FreteJaExistenteException, FreteVazioException, DIException, IdentException, tipoEntException {
 		this.frete.cadastrarFrete(frete);
@@ -92,42 +102,48 @@ public class Fachada {
 		this.frete.atualizarFrete(identificador, newFrete);
 	}
 
-	public void cadastrarVenda(Venda venda,RepositorioCliente clientesCadastrados,RepositorioFuncionario funcionarios) throws InserirExistenteException, PessoaNaoCadastradoException {
+	public void cadastrarVenda(Venda venda, RepositorioCliente clientesCadastrados, RepositorioFuncionario funcionarios)
+			throws InserirExistenteException, PessoaNaoCadastradoException, ClienteNExisteException, FuncionarioNaoExisteException {
+        Cliente aux;
+        Funcionario aux2;
 		this.venda.cadastrar(venda, clientesCadastrados, funcionarios);
+	   aux = clientesCadastrados.buscar(venda.getCliente().getNome(),venda.getCliente().getCpf());
+	    aux.gerarBonus();
+	    this.venda.cadastrar(venda, clientesCadastrados, funcionarios);
+	      aux2 = funcionarios.procurar(venda.getFuncionario().getCpf());
+	      aux2.gerarBonus();
 	}
+
 	public boolean existeVenda(Venda venda) {
 		return this.venda.existe(venda);
 	}
+
 	public void removerVenda(Venda venda) throws VendaNaoEncontradaException {
 		this.venda.remover(venda);
 	}
+
 	public Venda buscarVenda(int id) throws BuscaIdException {
 		return this.venda.buscar(id);
 	}
-	public void atualizarVenda(Venda vendaAntiga,Venda vendaAtualizada) throws VendaNaoEncontradaException {
+
+	public void atualizarVenda(Venda vendaAntiga, Venda vendaAtualizada) throws VendaNaoEncontradaException {
 		this.venda.atualizar(vendaAntiga, vendaAtualizada);
 	}
-	
-	
 
 	public void cadastrarfuncionario(Funcionario funcionario) throws FuncionarioCadastradoException {
 		this.funcionario.cadastrar(funcionario);
 	}
-	
+
 	public void removerfuncionario(Funcionario funcionario) throws FuncionarioNaoExisteException {
 		this.funcionario.remover(funcionario);
 	}
+
 	public Funcionario procurarfuncionario(Funcionario funcionario) throws FuncionarioNaoExisteException {
 		return this.funcionario.procurar(funcionario);
 	}
+
 	public void atualizarfuncionario(Funcionario funcionario) throws FuncionarioNaoExisteException {
 		this.funcionario.atualizar(funcionario);
 	}
-	
-	
-	
-	
-	
-	
-	
+
 }

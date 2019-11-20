@@ -12,6 +12,7 @@ public class Venda {
 	private Funcionario funcionario;
 	private RepositorioProduto carrinho;
 	private int id;
+	
 
 	public Venda(Cliente cliente, Funcionario funcionario, RepositorioProduto carrinho, int id,
 			RepositorioFuncionario funcionariosDaLoja, RepositorioCliente clientesCadastrados) {
@@ -25,6 +26,7 @@ public class Venda {
 			this.funcionario = funcionario;
 			this.carrinho = carrinho;
 			this.id = id;
+		
 		}
 	}
 

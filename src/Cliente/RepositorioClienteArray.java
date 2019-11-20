@@ -36,7 +36,7 @@ public class RepositorioClienteArray implements RepositorioCliente {
 			if (repositorioA[i].getNome().equals(nome) && repositorioA[i].getCpf().equals(cpf)) {
 				aux = repositorioA[i];
 
-			} else if (repositorioA[i].equals(null)) {
+			} else if (repositorioA[i]==null) {
 				ClienteNExisteException erro = new ClienteNExisteException(nome, cpf);
 				throw erro;
 				
@@ -52,7 +52,7 @@ public class RepositorioClienteArray implements RepositorioCliente {
 	public boolean existe(String nome, String cpf) {
 		boolean aux = false;
 		for (int i = 0; i < repositorioA.length; i++) {
-			if (repositorioA[i].getNome().equals(nome)&&repositorioA[i].getCpf().equals(cpf)) {
+			if ((repositorioA[i].getNome().equals(nome)&&repositorioA[i].getCpf().equals(cpf))) {
 				aux = true;
 
 			} else {
@@ -68,7 +68,7 @@ public class RepositorioClienteArray implements RepositorioCliente {
 			if (cliente.equals(repositorioA[i])) {
 				repositorioA[i] = clienteNovo;
 				break;
-			} else if (cliente.equals(null)) {
+			} else if (cliente==null) {
 				ClienteNAtualizadoException erro = new ClienteNAtualizadoException(cliente);
 				throw erro;
 			}
@@ -79,7 +79,7 @@ public class RepositorioClienteArray implements RepositorioCliente {
 	public void remover(Cliente cliente) throws ClienteNRemovidoException {
 		int contador=0;
 		for (contador=0; contador < repositorioA.length; contador++) {
-			if(cliente.equals(null)) {
+			if(cliente==null) {
 				break;
 			}
 			else {

@@ -19,7 +19,7 @@ public class Funcionario extends Pessoa {
 		this.salario=salario;
 	}
 	@Override
-	public void gerarBonus(Pessoa pessoa) {
+	public void gerarBonus() {
 
 		this.setBonus(getBonus()+1);
 

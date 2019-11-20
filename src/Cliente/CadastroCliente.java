@@ -28,6 +28,18 @@ public class CadastroCliente {
 		return repositorio.buscar(nome, cpf);
 	}
 
+	public RepositorioCliente getRepositorio() {
+		return repositorio;
+	}
+
+
+
+	public void setRepositorio(RepositorioCliente repositorio) {
+		this.repositorio = repositorio;
+	}
+
+
+
 	public boolean existe(String nome, String cpf) {
 		return repositorio.existe(nome, cpf);
 	}

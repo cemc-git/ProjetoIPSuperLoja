@@ -14,7 +14,7 @@ private RepositorioVendaLista prox;
 
 
 
-				if (this.venda.equals(null)) {
+				if (this.venda==null) {
 					this.venda=venda;
 					this.prox=new RepositorioVendaLista();
 				}else {
@@ -29,9 +29,9 @@ private RepositorioVendaLista prox;
 
 	public boolean existe(Venda venda) {
 		boolean aux=false;
-		if (!venda.equals(null)) {
-			if (!this.venda.equals(null)) {
-			if (this.prox.equals(null)) {
+		if (venda!=null) {
+			if (this.venda!=null) {
+			if (this.prox==null) {
 				//aux continua falso
 			}
 				else if (this.venda.equals(venda)) {
@@ -56,7 +56,7 @@ private RepositorioVendaLista prox;
 	public Venda buscar(int id) throws BuscaIdException{
 
 		Venda aux=null;
-		if (prox.equals(null)) {
+		if (prox==null) {
 
 			BuscaIdException e=new BuscaIdException(id);
 			throw e;
@@ -77,8 +77,8 @@ private RepositorioVendaLista prox;
 	public void atualizar(Venda vendaAntiga, Venda vendaAtualizada)throws VendaNaoEncontradaException {
 
 
-			if (!venda.equals(null)) {
-			if (this.prox.equals(null)) {
+			if (venda!=null) {
+			if (this.prox==null) {
 				VendaNaoEncontradaException e= new VendaNaoEncontradaException(vendaAntiga);
 				throw e;
 			}
@@ -102,7 +102,7 @@ private RepositorioVendaLista prox;
 
 	@Override
 	public void remover(Venda venda) throws VendaNaoEncontradaException {
-	if (this.prox.equals(null)) {
+	if (this.prox==null) {
 		VendaNaoEncontradaException e = new VendaNaoEncontradaException(venda);
 		throw e;
 	}

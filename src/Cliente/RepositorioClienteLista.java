@@ -7,13 +7,11 @@ public class RepositorioClienteLista implements RepositorioCliente {
 
 	public RepositorioClienteLista() {
 		this.cliente = null;
-		
 		this.prox = null;
-		
 	}
 
 	public void inserir(Cliente cliente) throws ClienteExisteException {
-		if (this.cliente.equals(null)) {
+		if (this.cliente==null) {
 			this.cliente = cliente;
 			this.prox = new RepositorioClienteLista();
 		} else if (this.cliente.equals(cliente)) {
@@ -32,7 +30,7 @@ public class RepositorioClienteLista implements RepositorioCliente {
 		if (cliente.getNome().equals(nome) && cliente.getCpf().equals(cpf)) {
 			x=cliente;
 			return x;
-		} else if (prox.equals(null)) {
+		} else if (prox==null) {
 			ClienteNExisteException erro = new ClienteNExisteException(nome,cpf);
 			throw erro;
 			// Nao existe esse cliente
@@ -43,11 +41,12 @@ public class RepositorioClienteLista implements RepositorioCliente {
 	}
 
 	public boolean existe(String nome, String cpf) {
-		if (cliente.equals(this.cliente)) {
+		 if (this.cliente == null) {
+				return false;
+			}
+		else if (nome.equals(this.cliente.getNome())&&this.cliente.getCpf().equals(cpf)) {
 			return true;
-		} else if (cliente.equals(null)) {
-			return false;
-		} else {
+		}  else {
 			return this.prox.existe(nome, cpf);
 
 		}
@@ -57,7 +56,7 @@ public class RepositorioClienteLista implements RepositorioCliente {
 	public void atualizar(Cliente cliente, Cliente clienteNovo) throws ClienteNAtualizadoException {
 		if (cliente.equals(this.cliente)) {
 			this.cliente = clienteNovo;
-		} else if (cliente.equals(null)) {
+		} else if (cliente==null) {
 			ClienteNAtualizadoException erro = new ClienteNAtualizadoException(cliente);
 			throw erro;
 			// vai dar erro ou n atualizar no caso
@@ -70,7 +69,7 @@ public class RepositorioClienteLista implements RepositorioCliente {
 		if (cliente.equals(this.cliente)) {
 			this.cliente = this.prox.cliente;
 			this.prox = this.prox.prox;
-		} else if (cliente.equals(null)) {
+		} else if (cliente==null) {
 			ClienteNRemovidoException erro = new ClienteNRemovidoException(cliente);
 			throw erro;
 		} else {

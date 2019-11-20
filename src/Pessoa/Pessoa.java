@@ -8,11 +8,11 @@ public abstract class Pessoa {
 	/* private RepositorioVendas historico; */
 	private int bonus;
 
-	public Pessoa(String nome, String cpf, int bonus) {
-		this.nome = null;
-		this.cpf = null;
+	public Pessoa(String nome, String cpf) {
+		this.nome = nome;
+		this.cpf = cpf;
 //this.historico=null;//
-		this.bonus = 0;
+		
 	}
 
 	public String getNome() {
@@ -35,7 +35,7 @@ public abstract class Pessoa {
 		this.cpf = cpf;
 	}
 
-	public abstract void gerarBonus(Pessoa pessoa);
+	public abstract void gerarBonus();
 
 	public int getBonus() {
 		return bonus;

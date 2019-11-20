@@ -3,8 +3,8 @@ import Pessoa.Pessoa;
 public class RepositorioFuncionarioArray implements RepositorioFuncionario {
 	private Funcionario[] repositorio;
 	private int contador;
-	public RepositorioFuncionarioArray(int tamanho) {
-		this.repositorio = new Funcionario[tamanho]; // Array criado
+	public RepositorioFuncionarioArray() {
+		this.repositorio = new Funcionario[30]; // Array criado
 		this.contador = 0;
 }
 	public void inserir(Funcionario funcionario) throws FuncionarioCadastradoException {
