@@ -1,18 +1,12 @@
 package Funcionario;
-
 import Pessoa.Pessoa;
-
 public class RepositorioFuncionarioArray implements RepositorioFuncionario {
 	private Funcionario[] repositorio;
 	private int contador;
-
 	public RepositorioFuncionarioArray(int tamanho) {
 		this.repositorio = new Funcionario[tamanho]; // Array criado
 		this.contador = 0;
-
-	
-	}
-
+}
 	public void inserir(Funcionario funcionario) throws FuncionarioCadastradoException {
 		for (int i = 0; i < this.contador; i++) {
 			if (this.repositorio[i] == funcionario) {
@@ -37,13 +31,11 @@ public class RepositorioFuncionarioArray implements RepositorioFuncionario {
 		}
 		return resposta;
 	}
-
 	private int getContador(String cpf) {
 //Private pois so usarei esse metodo nessa classe
 		String n;
 		boolean achou = false;
 		int i = 0;
-
 		while ((!achou) && (i < this.contador)) {
 //Se achou for vdd ele entra altomaticamente(mesma coisa que acontece no if)	
 			n = repositorio[i].getCpf();
@@ -53,11 +45,9 @@ public class RepositorioFuncionarioArray implements RepositorioFuncionario {
 				i = i + 1;
 			}
 		}
-
 		return i;
 //Se i for igual a this.contador, ele nao encontrou
 	}
-
 	public void atualizar(Funcionario funcionario) throws FuncionarioNaoExisteException {
 		int i = this.getContador(funcionario.getCpf());
 		if (i == this.contador) {
@@ -66,7 +56,6 @@ public class RepositorioFuncionarioArray implements RepositorioFuncionario {
 			this.repositorio[i] = funcionario;
 		}
 	}
-
 	public void remover(String cpf) throws FuncionarioNaoExisteException {
 		int i = this.getContador(cpf);
 		if (i == this.contador) {
@@ -81,7 +70,6 @@ public class RepositorioFuncionarioArray implements RepositorioFuncionario {
 			// eu na posicao1 é agora e null
 		}
 	}
-
 	public boolean existe(String cpf) {
 		int i = this.getContador(cpf);
 		if (i == this.contador) {
@@ -92,4 +80,3 @@ public class RepositorioFuncionarioArray implements RepositorioFuncionario {
 	}
 
 }
-
