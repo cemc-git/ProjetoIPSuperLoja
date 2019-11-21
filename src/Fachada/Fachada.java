@@ -13,21 +13,29 @@ import Funcionario.Funcionario;
 import Funcionario.FuncionarioCadastradoException;
 import Funcionario.FuncionarioNaoExisteException;
 import Funcionario.RepositorioFuncionario;
-//import Produto.CadastroProduto;//
+import Produto.CadastroProduto;
+import Produto.NomeProdutoInvalidoException;
+import Produto.Produto;
+import Produto.ProdutoInexistenteException;
+import Produto.ProdutoJaExistenteException;
+import Produto.ProdutoNaoAtualizadoException;
+import Produto.ProdutoNaoEncontradoException;
+import Produto.ProdutoNaoRemovidoException;
+import Produto.ProdutoVazioException;
+import Produto.ValorDeCompraeVendaException;
+import Produto.ValorProdutoException;
 import ServicoDeEntrega.CadastroServicoDeEntrega;
 import ServicoDeEntrega.DIException;
 import ServicoDeEntrega.FreteInexistenteException;
 import ServicoDeEntrega.FreteJaExistenteException;
 import ServicoDeEntrega.FreteVazioException;
 import ServicoDeEntrega.IdentException;
-import ServicoDeEntrega.RepositorioServicoEntrega;
 import ServicoDeEntrega.ServicoDeEntrega;
 import ServicoDeEntrega.tipoEntException;
 import Venda.BuscaIdException;
 import Venda.CadastroVenda;
 import Venda.InserirExistenteException;
 import Venda.PessoaNaoCadastradoException;
-import Venda.RepositorioVenda;
 import Venda.Venda;
 import Venda.VendaNaoEncontradaException;
 
@@ -36,6 +44,7 @@ public class Fachada {
 	private CadastroVenda venda;
 	private CadastroServicoDeEntrega frete;
 	private CadastroFuncionario funcionario;
+	private CadastroProduto produto;
 
 	// private CadastroProduto produto//
 
@@ -46,17 +55,15 @@ public class Fachada {
 		this.venda = repositorioVenda;
 		this.funcionario = repositoriofuncionario;
 	}*/
-
 	
-
 	public Fachada(CadastroCliente clientes, CadastroFuncionario funcionarios, CadastroVenda vendas,
-			CadastroServicoDeEntrega fretes) {
+			CadastroServicoDeEntrega fretes, CadastroProduto produto) {
 		this.cliente = clientes;
 		this.frete = fretes ;
 		this.venda = vendas;
 		this.funcionario = funcionarios;
+		this.produto = produto;
 	}
-
 
 
 	public void cadastrarCliente(Cliente cliente) throws ClienteExisteException, CamposInvalidoException {
@@ -146,4 +153,24 @@ public class Fachada {
 		this.funcionario.atualizar(funcionario);
 	}
 
+	public void cadastrarProduto(Produto produto)
+		throws ProdutoJaExistenteException, ProdutoInexistenteException, NomeProdutoInvalidoException, ProdutoNaoAtualizadoException, ValorProdutoException, ValorDeCompraeVendaException, ProdutoVazioException {
+	this.produto.CadastrarProduto(produto);
+ }
+	public void RemoverProduto(String nomeproduto) throws ProdutoNaoRemovidoException, NomeProdutoInvalidoException,
+	NomeProdutoInvalidoException, ProdutoInexistenteException {
+		this.produto.RemoverProduto(nomeproduto);	
+	}
+	public boolean ExisteProduto(String nomeproduto)
+			throws ProdutoInexistenteException, ProdutoNaoEncontradoException, NomeProdutoInvalidoException {
+		return this.produto.ExisteProduto(nomeproduto);
+	}
+	public Produto ProcurarProduto(String nomeproduto)
+		throws NomeProdutoInvalidoException, ProdutoNaoEncontradoException, ProdutoInexistenteException {
+	 return this.produto.ProcurarProduto(nomeproduto);
+}	
+	public void AtualizarProduto(Produto produto, String nomeproduto) throws NomeProdutoInvalidoException,
+	ProdutoNaoEncontradoException, ProdutoInexistenteException, ProdutoNaoAtualizadoException {
+		this.produto.AtualizarProduto(produto, nomeproduto);
+	}
 }
