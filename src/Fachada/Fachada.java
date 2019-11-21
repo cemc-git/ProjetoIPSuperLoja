@@ -67,19 +67,19 @@ public class Fachada {
 
 
 	public void cadastrarCliente(Cliente cliente) throws ClienteExisteException, CamposInvalidoException {
-		this.cliente.cadastrar(cliente);
+		 this.cliente.cadastrar(cliente);
 	}
 
 	public Cliente buscarCliente(String nome, String cpf) throws ClienteNExisteException {
-		return this.cliente.buscar(nome, cpf);
+		 return this.cliente.buscar(nome, cpf);
 	}
 
 	public boolean existeCliente(String nome, String cpf) {
-		return this.cliente.existe(nome, cpf);
+		 return this.cliente.existe(nome, cpf);
 	}
 
 	public void removerCliente(Cliente cliente) throws ClienteNRemovidoException {
-		this.cliente.remover(cliente);
+		 this.cliente.remover(cliente);
 	}
 
 	public void atualizarCliente(Cliente cliente, Cliente clienteNovo) throws ClienteNAtualizadoException {
@@ -122,7 +122,7 @@ public class Fachada {
 	}
 
 	public boolean existeVenda(Venda venda) {
-		return this.venda.existe(venda);
+		 return this.venda.existe(venda);
 	}
 
 	public void removerVenda(Venda venda) throws VendaNaoEncontradaException {
