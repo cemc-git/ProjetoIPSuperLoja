@@ -33,7 +33,7 @@ public class CadastroProduto {
 		if (nomeproduto.equals("")) {
 			throw new NomeProdutoInvalidoException();
 		} else if (produtos.existeProduto(nomeproduto) == true) {
-
+			this.produtos.removerProduto(nomeproduto);
 		} else {
 			throw new ProdutoInexistenteException();
 		}
