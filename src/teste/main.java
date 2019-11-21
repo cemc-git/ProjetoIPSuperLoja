@@ -428,7 +428,7 @@ public class main {
 						RepositorioProduto carrinho = new RepositorioProdutosLista();
 						int contador = 0;
 						while (contador < qtdProduto) {
-							System.out.println("Informe a quantidade do produto e o nome do mesmo à ser inserido na venda:(ex: 7 Sabão )");
+							System.out.println("Informe a quantidade do produto e o nome do mesmo à ser inserido na venda:(ex: 7(enter seguido de)Sabão )");
 							//int quantidade =Integer.parseInt(in.nextLine().trim());
 							int quantidade =in.nextInt();
 							nomeProduto=in.nextLine();

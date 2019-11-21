@@ -86,7 +86,7 @@ public class RepositorioClienteArray implements RepositorioCliente {
 			}
 		}
 		for (int i = 0; i < repositorioA.length; i++) {
-			if (cliente.equals(repositorioA[i])) {
+			if (cliente.getCpf().equals(repositorioA[i].getCpf())) {
 		      repositorioA[i]= repositorioA[contador-1];
               repositorioA[contador-1]=null;
               break;

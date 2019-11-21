@@ -63,14 +63,17 @@ public class RepositorioProdutosLista implements RepositorioProduto {
 	@Override
 	public boolean existeProduto(String nomedoproduto) throws ProdutoInexistenteException {
 		boolean existeProduto = false;
-		if (this.produto != null) {
-			if (this.produto.getNome_Produto().equals(nomedoproduto)) {
-				existeProduto = true;
-			} else {
-				this.proximo.existeProduto(nomedoproduto);
-			}
+		if (this.proximo==null) {
+			return false;
 		}
-		return existeProduto;
+		else if (this.produto.getNome_Produto().equals(nomedoproduto)) {
+				existeProduto = true;
+				return existeProduto;
+			} else {
+				return this.proximo.existeProduto(nomedoproduto);
+			}
+		
+		
 	}
 
 }
