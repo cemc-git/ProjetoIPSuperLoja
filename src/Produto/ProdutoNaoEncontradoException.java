@@ -1,7 +1,7 @@
 package Produto;
 
 public class ProdutoNaoEncontradoException extends Exception {
-		ProdutoNaoEncontradoException(){
+	ProdutoNaoEncontradoException() {
 		super("O produto não foi encontrado.");
 	}
 

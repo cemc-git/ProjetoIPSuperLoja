@@ -14,7 +14,7 @@ public class CadastroProduto {
 			throw new ProdutoVazioException();
 		} else if (produto.getNome_Produto().equals("")) {
 			throw new NomeProdutoInvalidoException();
-			
+
 		} else if (produto.getValor() == 0) {
 			throw new ValorProdutoException();
 
@@ -24,49 +24,54 @@ public class CadastroProduto {
 			throw new ProdutoJaExistenteException();
 		}
 	}
-	public void RemoverProduto(String nomeproduto) throws ProdutoNaoRemovidoException, NomeProdutoInvalidoException, NomeProdutoInvalidoException, ProdutoInexistenteException {
-		if(nomeproduto.equals("")) {
+
+	public void RemoverProduto(String nomeproduto) throws ProdutoNaoRemovidoException, NomeProdutoInvalidoException,
+			NomeProdutoInvalidoException, ProdutoInexistenteException {
+		if (nomeproduto.equals("")) {
 			throw new NomeProdutoInvalidoException();
-	} else if(produtos.existeProduto(nomeproduto)==true) {
-		
-	} else {
-		throw new ProdutoInexistenteException();
+		} else if (produtos.existeProduto(nomeproduto) == true) {
+
+		} else {
+			throw new ProdutoInexistenteException();
+		}
+
 	}
-		
-	}
-	public boolean ExisteProduto(String nomeproduto) throws ProdutoInexistenteException, ProdutoNaoEncontradoException, NomeProdutoInvalidoException {
-		if(nomeproduto.equals("")) {
+
+	public boolean ExisteProduto(String nomeproduto)
+			throws ProdutoInexistenteException, ProdutoNaoEncontradoException, NomeProdutoInvalidoException {
+		if (nomeproduto.equals("")) {
 			throw new NomeProdutoInvalidoException();
-		} if (produtos.existeProduto(nomeproduto)==true) {
+		}
+		if (produtos.existeProduto(nomeproduto) == true) {
 			return true;
 		} else {
 			return false;
 		}
-		
+
 	}
-	public Produto ProcurarProduto(String nomeproduto) throws NomeProdutoInvalidoException, ProdutoNaoEncontradoException, ProdutoInexistenteException {
-		if(nomeproduto.equals("")) {
+
+	public Produto ProcurarProduto(String nomeproduto)
+			throws NomeProdutoInvalidoException, ProdutoNaoEncontradoException, ProdutoInexistenteException {
+		if (nomeproduto.equals("")) {
 			throw new NomeProdutoInvalidoException();
-		} if (produtos.existeProduto(nomeproduto)) {
+		}
+		if (produtos.existeProduto(nomeproduto)) {
 			return produtos.procurarProduto(nomeproduto);
 		} else {
 			throw new ProdutoNaoEncontradoException();
 		}
 	}
-	public void AtualizarProduto(Produto produto, String nomeproduto) throws NomeProdutoInvalidoException, ProdutoNaoEncontradoException, ProdutoInexistenteException, ProdutoNaoAtualizadoException{
+
+	public void AtualizarProduto(Produto produto, String nomeproduto) throws NomeProdutoInvalidoException,
+			ProdutoNaoEncontradoException, ProdutoInexistenteException, ProdutoNaoAtualizadoException {
 		if (nomeproduto.contentEquals("")) {
 			throw new NomeProdutoInvalidoException();
-		} if (produtos.existeProduto(nomeproduto)==true) {
+		}
+		if (produtos.existeProduto(nomeproduto) == true) {
 			produtos.atualizarProduto(produto, nomeproduto);
 		} else {
 			throw new ProdutoNaoEncontradoException();
 		}
 	}
-	
-	
-	
-	
-	
-	
 
 }

@@ -1,7 +1,7 @@
 package Produto;
 
-public class ProdutoJaExistenteException extends Exception{
-	ProdutoJaExistenteException(){
+public class ProdutoJaExistenteException extends Exception {
+	ProdutoJaExistenteException() {
 		super("Este produto já existe.");
 	}
 

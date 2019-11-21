@@ -4,8 +4,6 @@ public class RepositorioProdutosLista implements RepositorioProduto {
 
 	private Produto produto;
 	private RepositorioProdutosLista proximo;
-	private Object produtos;
-
 	public RepositorioProdutosLista() {
 		this.produto = null;
 		this.proximo = null;
@@ -47,7 +45,7 @@ public class RepositorioProdutosLista implements RepositorioProduto {
 		if (this.produto == null) {
 			throw new ProdutoNaoEncontradoException();
 		} else if (this.produto.getNome_Produto() == nomeproduto) {
-			return (Produto) this.produtos;
+			return  this.produto;
 		} else {
 			return this.proximo.procurarProduto(nomeproduto);
 		}
@@ -56,8 +54,8 @@ public class RepositorioProdutosLista implements RepositorioProduto {
 	public void atualizarProduto(Produto newproduto, String nomedoproduto) throws ProdutoNaoAtualizadoException {
 		// TODO Auto-generated method stub
 		if (this.produto != null) {
-			if (this.produtos.equals(nomedoproduto)) {
-				this.produtos = produto;
+			if ( this.produto.equalsProduto(nomedoproduto)) {
+				this.produto = produto;
 			} else {
 				this.proximo.atualizarProduto(newproduto, nomedoproduto);
 			}
@@ -70,7 +68,7 @@ public class RepositorioProdutosLista implements RepositorioProduto {
 	public boolean existeProduto(String nomedoproduto) throws ProdutoInexistenteException {
 		boolean existeProduto = false;
 		if (this.produto != null) {
-			if (this.produto.equals(nomedoproduto)) {
+			if (this.produto.equalsProduto(nomedoproduto)) {
 				existeProduto = true;
 			} else {
 				this.proximo.existeProduto(nomedoproduto);

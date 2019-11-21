@@ -5,7 +5,6 @@ public class RepositorioProdutoArray implements RepositorioProduto {
 	private int indice;
 	private int quantidade;
 	private boolean removido, existe, atualizar;
-	
 
 	public void RepositorioprodutosArray(int quantidade) {
 		produtos = new Produto[quantidade];
@@ -28,7 +27,7 @@ public class RepositorioProdutoArray implements RepositorioProduto {
 	@Override
 	public String removerProduto(String nomeproduto) throws ProdutoNaoRemovidoException {
 		for (int i = 0; i < quantidade; i++) {
-			if (nomeproduto.equals(produtos[i])) {
+			if (produtos[i].equalsProduto(nomeproduto)) {
 				produtos[i] = null;
 				boolean removido = true;
 			}
@@ -43,34 +42,38 @@ public class RepositorioProdutoArray implements RepositorioProduto {
 	@Override
 	public boolean existeProduto(String nomeproduto) throws ProdutoInexistenteException {
 		for (int i = 0; i < produtos.length; i++) {
-			if (nomeproduto.equals(produtos[i])) {
+			if (produtos[i].equalsProduto(nomeproduto)) {
 				existe = true;
 			}
 		}
 		return existe;
 
 	}
-	
-	public Produto procurarProduto(String nomedoproduto) throws ProdutoNaoEncontradoException{
+
+	public Produto procurarProduto(String nomeproduto) throws ProdutoNaoEncontradoException {
 		Produto aux = null;
-		for(int i = 0; i < produtos.length; i++) {
-			if (nomedoproduto.equals(produtos[i]));
+		for (int i = 0; i < produtos.length; i++) {
+			if (produtos[i].equalsProduto(nomeproduto))
+				;
 			aux = produtos[i];
-		} if (aux == null) {
+		}
+		if (aux == null) {
 			throw new ProdutoNaoEncontradoException();
 		} else {
 			return aux;
 		}
-		
+
 	}
+
 	public void atualizarProduto(Produto newproduto, String nomedoproduto) throws ProdutoNaoAtualizadoException {
-		
+
 		for (int i = 0; i < produtos.length; i++) {
-			if (produtos[i].equals(nomedoproduto)) {
-				produtos[i]= newproduto;
-				atualizar=true;
+			if (produtos[i].equalsProduto(nomedoproduto)) {
+				produtos[i] = newproduto;
+				atualizar = true;
 			}
-		}if (atualizar==true) {
+		}
+		if (atualizar == true) {
 			throw new ProdutoNaoAtualizadoException();
 		}
 	}

@@ -1,7 +1,7 @@
 package Produto;
 
 public class ValorDeCompraeVendaException extends Exception {
-	public ValorDeCompraeVendaException(){
-		super("Valor de compra ou venda inválidos");		
-		}
+	public ValorDeCompraeVendaException() {
+		super("Valor de compra ou venda inválidos");
 	}
+}
